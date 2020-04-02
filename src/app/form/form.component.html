@@ -1,0 +1,165 @@
+<div *ngIf="step.form">
+    <form [formGroup]="solidarityRequestNewForm" (ngSubmit)="submit()">
+
+        <h2>DOMANDA DI AMMISSIONE EROGAZIONE BUONI SPESA</h2>
+
+        <hr>
+
+
+        <div fxLayout="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="firstname" required>
+                <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                <mat-error>Il nome è obbligatorio!</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Cognome</mat-label>
+                <input matInput formControlName="lastname" required>
+                <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                <mat-error>Il cognome è obbligatorio!</mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Codice Fiscale</mat-label>
+                <input matInput formControlName="taxId" required>
+                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                <mat-error>Il Codice Fiscale è obbligatoria!</mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Via</mat-label>
+                <input matInput formControlName="address" required>
+                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                <mat-error>La via è obbligatoria!</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Civico</mat-label>
+                <input matInput formControlName="address2" required>
+                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                <mat-error>Il civico è obbligatorio!</mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required>
+                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                <mat-error>La mail è obbligatorio!</mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Telefono</mat-label>
+                <input matInput formControlName="telephone">
+                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Cellulare</mat-label>
+                <input matInput formControlName="mobile" required>
+                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                <mat-error>Il numero di cellulare è obbligatorio!</mat-error>
+            </mat-form-field>
+        </div>
+
+        <h3>CONSAPEVOLE</h3>
+        <ul>
+            <li>che ai sensi dell’art. 76, comma 1 del DPR 445/2000, le dichiarazioni mendaci, le falsità in atti, l’uso
+                di
+                atti falsi sono puniti ai sensi del codice penale; che, ai sensi dell’art. 75 del DPR n. 445/2000, il
+                dichiarante
+                decade dai benefici eventualmente conseguiti da provvedimenti emanati sulla base di dichiarazioni non
+                veritiere; che, ai sensi dell’art. 71 del DPR 445/2000, l’Ente ha l’obbligo di effettuare idonei
+                controlli,
+                anche a campione, sulla veridicità di quanto dichiarato, ai sensi degli artt. 46 e 47 del DPR 445/2000;
+            </li>
+            <li>che tutte le informazioni fornite saranno trasmesse dal Comune di Santa Maria la Carità alle Autorità
+                competenti (Guardia di Finanza, Agenzia delle Entrate) per i controlli di rito sulla veridicità delle
+                stesse;</li>
+        </ul>
+
+        <h3>CHIEDE</h3>
+        <p>di essere ammesso all’erogazione di buoni spesa da utilizzare presso gli esercizi commerciali
+        aderenti del territorio comunale;</p>
+
+        <h3>DICHIARA</h3>
+            <p><b>-></b> di aver subìto un impoverimento/peggioramento della situazione economica reddituale
+determinatasi per effetto delle conseguenze dell’emergenza epidemiologica da Covid-19;</p>
+            <p><b>-></b> che il proprio nucleo familiare oltre al dichiarante stesso, è così composto:</p>
+
+        <div fxLayout="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Adulti</mat-label>
+                <input matInput formControlName="adult" required>
+                <mat-error>Non possono non esserci adulti in un nucleo familiare!</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Bambini</mat-label>
+                <input matInput formControlName="children">
+            </mat-form-field>
+        </div>
+
+        <p><b>-></b> che la suddetta istanza è l’unica presentata dal proprio nucleo familiare;</p>
+
+        <p><b>-></b> di trovarsi in una delle seguenti condizioni:</p>
+        <div fxLayout="row">
+            <mat-radio-group aria-label="Select an option" formControlName="requestStatus" required>
+                <mat-radio-button value="A">A</mat-radio-button>
+                <p>Stato di disoccupazione/inoccupazione dal 1 Gennaio 2020 – condizione riferita a
+                    tutti i componenti il nucleo familiare – che non beneficiano di alcuna misura di
+                    sostegno al reddito</p>
+                <mat-radio-button value="B">B</mat-radio-button>
+                <p>L’aver subìto un impoverimento/peggioramento della situazione economica-
+                    reddituale, sempre derivante dall’emergenza epidemiologica da virus Covid 19</p>
+                <mat-radio-button value="C">C</mat-radio-button>
+                <p>Essere esposto agli effetti economici derivanti dall’emergenza epidemiologica da
+                    virus Covid-19 con reddito netto complessivo dell’intero nucleo familiare non
+                    superiore ad € 1.300,00. Rientrano nella suddetta categoria i percettori di misure
+                    di sostegno al reddito, nello specifico: reddito di cittadinanza, reddito di inclusione,
+                    naspi, mini naspi, asdi, cassa integrazione guadagni e nuclei familiari in cui l’unico
+                    reddito è costituito da pensione minima sociale</p>
+            </mat-radio-group>
+        </div>
+
+        <div *ngIf="solidarityRequestNewForm.value.requestStatus=='B' || solidarityRequestNewForm.value.requestStatus=='C'">
+            <h4>Redditi netti complessivi intero nucleo familiare</h4>
+
+            <div fxLayout="row" *ngIf="solidarityRequestNewForm.value.requestStatus=='B'">
+                <mat-form-field appearance="outline">
+                    <mat-label>mese di Febbraio 2020</mat-label>
+                    <input matInput formControlName="requestStatusBIncomeFeb">
+                </mat-form-field>
+                (ante emergenza)
+            </div>
+            <div fxLayout="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>mese di Marzo 2020</mat-label>
+                    <input matInput formControlName="requestStatusBIncomeMar">
+                </mat-form-field>
+                (inizio emergenza) massimo €1.300,00
+            </div>
+        </div>
+
+        <p><b>-></b>di autorizzare il trattamento dei dati personali ai sensi dell’art. 13 del Decreto Legislativo 
+            30 Giugno 2003, n. 196 “Codice in materia di protezione dei dati personali” e dell’art. 13 del GDPR (Regolamento UE 679/2016).</p>
+
+        <div fxLayout="row" fxLayoutAlign="end top">
+            <button type="submit" mat-raised-button color="accent">INVIA DOMANDA</button>
+        </div>
+
+    </form>
+
+</div>
+
+<div *ngIf="step.loading">
+    <mat-spinner></mat-spinner>
+    INVIO DOMANDA ...
+</div>
+
+<div *ngIf="step.complete">
+    <h3>LA DOMANDA E' STATA INVIATA CON SUCCESSO!</h3>
+    Vi contatteremo noi appena lavoreremo la vostra domanda!<br>
+    <a href="https://www.comune.santamarialacarita.na.it/">Ritorna al sito del Comune</a>
+</div>
