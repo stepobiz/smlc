@@ -97,6 +97,7 @@ export class FormComponent implements OnInit {
       await this.complexApiControllerService.complexSolidarityRequestPost(this.solidarityRequestNewForm.value).toPromise();
       this.setStep("complete");
     } catch (e) {
+      alert("Errore nell'invio! Controllare che nei campi dei redditi non ci siano ne decimali ne il simbolo dell'euro");
       this.setStep("form");
     }
 

@@ -6,29 +6,29 @@
         <hr>
 
 
-        <div fxLayout="row">
-            <mat-form-field appearance="outline">
+        <div>
+            <mat-form-field appearance="outline" >
                 <mat-label>Nome</mat-label>
                 <input matInput formControlName="firstname" required>
                 <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
                 <mat-error>Il nome è obbligatorio!</mat-error>
             </mat-form-field>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" >
                 <mat-label>Cognome</mat-label>
                 <input matInput formControlName="lastname" required>
                 <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
                 <mat-error>Il cognome è obbligatorio!</mat-error>
             </mat-form-field>
         </div>
-        <div fxLayout="row">
+        <div>
             <mat-form-field appearance="outline">
                 <mat-label>Codice Fiscale</mat-label>
                 <input matInput formControlName="taxId" required>
-                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
-                <mat-error>Il Codice Fiscale è obbligatoria!</mat-error>
+                <mat-icon matSuffix class="secondary-text">code</mat-icon>
+                <mat-error>Il codice fiscale è obbligatorio!</mat-error>
             </mat-form-field>
         </div>
-        <div fxLayout="row">
+        <div>
             <mat-form-field appearance="outline">
                 <mat-label>Via</mat-label>
                 <input matInput formControlName="address" required>
@@ -42,24 +42,24 @@
                 <mat-error>Il civico è obbligatorio!</mat-error>
             </mat-form-field>
         </div>
-        <div fxLayout="row">
+        <div>
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="email" required>
-                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
-                <mat-error>La mail è obbligatorio!</mat-error>
+                <mat-icon matSuffix class="secondary-text">email</mat-icon>
+                <mat-error>L' Email è obbligatoria!</mat-error>
             </mat-form-field>
         </div>
-        <div fxLayout="row">
+        <div>
             <mat-form-field appearance="outline">
                 <mat-label>Telefono</mat-label>
                 <input matInput formControlName="telephone">
-                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                <mat-icon matSuffix class="secondary-text">local_phone</mat-icon>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Cellulare</mat-label>
                 <input matInput formControlName="mobile" required>
-                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                <mat-icon matSuffix class="secondary-text">mobile_friendly</mat-icon>
                 <mat-error>Il numero di cellulare è obbligatorio!</mat-error>
             </mat-form-field>
         </div>
@@ -85,15 +85,15 @@
         aderenti del territorio comunale;</p>
 
         <h3>DICHIARA</h3>
-            <p><b>-></b> di aver subìto un impoverimento/peggioramento della situazione economica reddituale
-determinatasi per effetto delle conseguenze dell’emergenza epidemiologica da Covid-19;</p>
-            <p><b>-></b> che il proprio nucleo familiare oltre al dichiarante stesso, è così composto:</p>
+            <p><b>-></b> di aver subìto un grave deterioramento della propria condizione economico-finanziaria
+                determinatasi per effetto delle conseguenze dell’emergenza epidemiologica da Covid-19;</p>
+            <p><b>-></b> che il proprio nucleo familiare è così composto:</p>
 
-        <div fxLayout="row">
+        <div>
             <mat-form-field appearance="outline">
                 <mat-label>Adulti</mat-label>
                 <input matInput formControlName="adult" required>
-                <mat-error>Non possono non esserci adulti in un nucleo familiare!</mat-error>
+                <mat-error>Il numero di adulti è obbligatorio!</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Bambini</mat-label>
@@ -103,47 +103,56 @@ determinatasi per effetto delle conseguenze dell’emergenza epidemiologica da C
 
         <p><b>-></b> che la suddetta istanza è l’unica presentata dal proprio nucleo familiare;</p>
 
+        <p><b>-></b>di autorizzare il trattamento dei dati personali ai sensi dell’art. 13 del Decreto Legislativo 
+            30 Giugno 2003, n. 196 “Codice in materia di protezione dei dati personali” e dell’art. 13 del GDPR (Regolamento UE 679/2016).</p>
+
         <p><b>-></b> di trovarsi in una delle seguenti condizioni:</p>
-        <div fxLayout="row">
+        <div>
             <mat-radio-group aria-label="Select an option" formControlName="requestStatus" required>
                 <mat-radio-button value="A">A</mat-radio-button>
-                <p>Stato di disoccupazione/inoccupazione dal 1 Gennaio 2020 – condizione riferita a
-                    tutti i componenti il nucleo familiare – che non beneficiano di alcuna misura di
-                    sostegno al reddito</p>
+                <p>essere disoccupato/inoccupato dal 1 Gennaio 2020 – condizione riferita a tutti i
+                    componenti il nucleo familiare – e non beneficiare di alcuna misura di sostegno al
+                    reddito;</p>
                 <mat-radio-button value="B">B</mat-radio-button>
-                <p>L’aver subìto un impoverimento/peggioramento della situazione economica-
-                    reddituale, sempre derivante dall’emergenza epidemiologica da virus Covid 19</p>
+                <p>l’aver subìto un impoverimento/peggioramento della situazione economica-
+                    reddituale, sempre derivante dall’emergenza epidemiologica da virus Covid 19.
+                    Saranno dichiarati e confrontati i redditi netti complessivi percepiti dal nucleo
+                    familiare nei mesi di Febbraio 2020 (prima dell’emergenza) e Marzo 2020 (inizio
+                    emergenza). Per accedere alla misura, il reddito netto complessivo del nucleo
+                    familiare relativo al mese di Marzo non deve essere superiore ad € 1.300,00 (con
+                    uno scostamento tra le due mensilità non inferiore al 50 %) comprensivo delle
+                    eventuali ulteriori agevolazioni previste dal Decreto “Cura Italia” D.L. 17/03/2020,
+                    n.18.</p>
                 <mat-radio-button value="C">C</mat-radio-button>
-                <p>Essere esposto agli effetti economici derivanti dall’emergenza epidemiologica da
+                <p>essere esposto agli effetti economici derivanti dall’emergenza epidemiologica da
                     virus Covid-19 con reddito netto complessivo dell’intero nucleo familiare non
                     superiore ad € 1.300,00. Rientrano nella suddetta categoria i percettori di misure
                     di sostegno al reddito, nello specifico: reddito di cittadinanza, reddito di inclusione,
-                    naspi, mini naspi, asdi, cassa integrazione guadagni e nuclei familiari in cui l’unico
-                    reddito è costituito da pensione minima sociale</p>
+                    naspi, mini naspi, asdi e cassa integrazione guadagni.
+                    
+                    Per i nuclei familiari di due o più persone in cui l’unico reddito è costituito dalla
+                    pensione sociale il tetto massimo per accedere alla misura è di € 800,00; per i
+                    nuclei familiari (una sola persona) in cui l’unico reddito è costituito dalla pensione
+                    sociale il tetto massimo per accedere alla misura è di € 540,00;</p>
             </mat-radio-group>
         </div>
 
         <div *ngIf="solidarityRequestNewForm.value.requestStatus=='B' || solidarityRequestNewForm.value.requestStatus=='C'">
             <h4>Redditi netti complessivi intero nucleo familiare</h4>
-
+            <h3 style="color:red;">Non indicare ne decimali ne il simbolo dell'euro</h3>
             <div fxLayout="row" *ngIf="solidarityRequestNewForm.value.requestStatus=='B'">
-                <mat-form-field appearance="outline">
-                    <mat-label>mese di Febbraio 2020</mat-label>
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>mese di Febbraio 2020 (ante emergenza)</mat-label>
                     <input matInput formControlName="requestStatusBIncomeFeb">
                 </mat-form-field>
-                (ante emergenza)
             </div>
-            <div fxLayout="row">
-                <mat-form-field appearance="outline">
-                    <mat-label>mese di Marzo 2020</mat-label>
+            <div>
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>mese di Marzo 2020 <span *ngIf="solidarityRequestNewForm.value.requestStatus=='B'">(inizio emergenza)</span></mat-label>
                     <input matInput formControlName="requestStatusBIncomeMar">
                 </mat-form-field>
-                (inizio emergenza) massimo €1.300,00
             </div>
         </div>
-
-        <p><b>-></b>di autorizzare il trattamento dei dati personali ai sensi dell’art. 13 del Decreto Legislativo 
-            30 Giugno 2003, n. 196 “Codice in materia di protezione dei dati personali” e dell’art. 13 del GDPR (Regolamento UE 679/2016).</p>
 
         <div fxLayout="row" fxLayoutAlign="end top">
             <button type="submit" mat-raised-button color="accent">INVIA DOMANDA</button>
