@@ -1,0 +1,50 @@
+.mat-stepper-horizontal {
+    margin-top: 8px;
+}
+
+.mat-form-field {
+    margin-top: 16px;
+}
+.principalRequirementRadio {
+    width: 33%;
+}
+
+.fasce {
+    font-size: 19px;
+}
+
+p, li {
+    text-align: justify;
+}
+
+.big-p {
+    font-weight: bold;
+}
+
+#dichiarazione {
+    margin: 0 auto;
+    background-color: white;
+    border: 1px solid black;
+    max-width: 650px;
+    padding: 25px;
+
+    p {
+        padding: 0 0 0 30px;
+    }
+
+    .rtl {
+        text-align: right;
+        margin: 50px 0;
+    }
+    
+    #oggetto {
+        padding: 0 0 0 0;
+    }    
+
+    #intestazione {
+        width: 250px;
+        margin: 0 auto;
+        text-align: center;
+    }
+}    
+

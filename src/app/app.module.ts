@@ -17,10 +17,13 @@ import { AigSolidaretyApiModule, AIG_SOLIDARETY_BASE_PATH } from 'aig-solidarety
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenContextInterceptor } from './token-context.interceptor';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { Form2Component } from './form-2/form-2.component';
+import { MatStepperModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
+    Form2Component,
     FormComponent
   ],
   imports: [
@@ -43,6 +46,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatSelectModule,
     MatRadioModule,
     MatProgressSpinnerModule,
+    MatStepperModule,
   ],
   providers: [
     {

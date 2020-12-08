@@ -1,0 +1,610 @@
+<div style="width: 100%; padding: 10px;">
+    <h2>DOMANDA DI AMMISSIONE EROGAZIONE BUONI SPESA</h2>
+
+    <hr>
+
+
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+
+
+
+
+
+
+
+
+
+
+
+
+        <mat-step [completed]="principalRequirementIsCompleted">
+            <ng-template matStepLabel>Requisito principale</ng-template>
+            <form [formGroup]="principalRequirementFormGroup">
+                <h1>DISPONIBILITA' BANCARIA/POSTALE INTERO NUCLEO FAMILIARE</h1>
+
+                <h3>Indicare il saldo disponibile al 30/11/2020 di conto corrente bancario/postale e/o un saldo
+                    derivante
+                    da libretti di risparmio bancari/postali, complessivamente per l'intero nucleo familiare non
+                    superiore ad € 15.000,00 e precisamente:
+                </h3>
+
+                <div>
+                    <mat-radio-group aria-label="Select an option" formControlName="accountBalance" required>
+                        <mat-radio-button class="principalRequirementRadio" (change)="checkPrincipalRequirement($event)"
+                            value="A">
+                            <span class="fasce">Fino ad &euro; 5.000,00</span>
+                        </mat-radio-button>
+                        <br><br>
+                        <mat-radio-button class="principalRequirementRadio" (change)="checkPrincipalRequirement($event)"
+                            value="B">
+                            <span class="fasce">Da &euro; 5.000,01 a &euro;15.000,00</span>
+                        </mat-radio-button>
+                        <br><br>
+                        <mat-radio-button class="principalRequirementRadio" (change)="checkPrincipalRequirement($event)"
+                            value="C">
+                            <span class="fasce">Superiore a &euro; 15.000,01</span>
+                        </mat-radio-button>
+                    </mat-radio-group>
+                    <h3>Il dato inserito sarà trasmesso e verificato dagli Enti preposti (Agenzia delle Entrate e
+                        Guardia di Finanza).</h3>
+                </div>
+                <br>
+                <div>
+                    <mat-error *ngIf="principalRequirementError != ''">{{ principalRequirementError }}</mat-error>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="end top">
+                    <button mat-button mat-raised-button color="primary"
+                        (click)="checkAndGoPrincipalRequirement(stepper)">Verifica e vai avanti</button>
+                </div>
+            </form>
+        </mat-step>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <mat-step [stepControl]="anagraficFormGroup">
+            <ng-template matStepLabel>Dati anagrafici</ng-template>
+
+            <form [formGroup]="anagraficFormGroup">
+                <h3>Dati richiedente</h3>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nome</mat-label>
+                        <input matInput formControlName="firstname" required>
+                        <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                        <mat-error>Il nome è obbligatorio!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Cognome</mat-label>
+                        <input matInput formControlName="lastname" required>
+                        <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                        <mat-error>Il cognome è obbligatorio!</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Codice Fiscale</mat-label>
+                        <input matInput formControlName="taxId" required>
+                        <mat-icon matSuffix class="secondary-text">code</mat-icon>
+                        <mat-error>Il codice fiscale è obbligatorio!</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <h3>Contatti</h3>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email">
+                        <mat-icon matSuffix class="secondary-text">email</mat-icon>
+                        <mat-error>L' Email è obbligatoria!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Cellulare</mat-label>
+                        <input matInput formControlName="mobile" type="number" required>
+                        <mat-icon matSuffix class="secondary-text">mobile_friendly</mat-icon>
+                        <mat-error>Il numero di cellulare è obbligatorio!</mat-error>
+                    </mat-form-field>
+                    Sul cellulare inserito perverranno eventuali comunicazioni.
+                </div>
+
+                <h3>Nucleo Familiare</h3>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Adulti</mat-label>
+                        <input matInput formControlName="adult" type="number" required>
+                        <mat-error>Il numero di adulti è obbligatorio!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Minori</mat-label>
+                        <input matInput formControlName="children" type="number">
+                    </mat-form-field>
+                    Numero di minori ( 0-18 anni) presenti nel nucleo familiare.
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="end top">
+                    <button mat-button matStepperPrevious>Indietro</button>
+                    <button mat-button matStepperNext mat-raised-button color="primary">Avanti</button>
+                </div>
+            </form>
+        </mat-step>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <mat-step [stepControl]="residenceFormGroup">
+            <ng-template matStepLabel>Informazioni residenza</ng-template>
+
+            <form [formGroup]="residenceFormGroup">
+                <h2>Informazioni sulla residenza del nucleo familiare</h2>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Via</mat-label>
+                        <input matInput formControlName="address" required>
+                        <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                        <mat-error>La via è obbligatoria!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Civico</mat-label>
+                        <input matInput formControlName="address2" required>
+                        <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                        <mat-error>Il civico è obbligatorio!</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <h3>Il nucleo familiare è residente in immobile adibito ad abitazione principale ed in possesso di
+                        CONTRATTO DI LOCAZIONE REGISTRATO oppure titolare di CONTRATTO DI MUTUO?</h3>
+                    <mat-radio-group aria-label="Select an option" formControlName="rentOrMutal" required>
+                        <mat-radio-button class="principalRequirementRadio" value="1">SI</mat-radio-button>
+                        <mat-radio-button class="principalRequirementRadio" value="0">NO</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="end top">
+                    <button mat-button matStepperPrevious>Indietro</button>
+                    <button mat-button matStepperNext mat-raised-button color="primary">Avanti</button>
+                </div>
+            </form>
+        </mat-step>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <mat-step [stepControl]="economicSituationFormGroup">
+            <ng-template matStepLabel>Condizione economica</ng-template>
+
+            <form [formGroup]="economicSituationFormGroup">
+                <div>
+                    <h3>Indica la tua situazione economica e del tuo nucleo familiare</h3>
+                    <mat-radio-group formControlName="economicalSituation">
+                        <mat-radio-button value="A">A</mat-radio-button>
+                        <p [ngClass]="{'big-p': (economicSituationFormGroup.controls.economicalSituation.value=='A')}">
+                            A. essere disoccupato/inoccupato a far data dal 1 Ottobre 2020, non beneficiare di alcuna
+                            misura
+                            di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito;</p>
+                        <br>
+
+                        <mat-radio-button value="B">B</mat-radio-button>
+                        <p [ngClass]="{'big-p': (economicSituationFormGroup.controls.economicalSituation.value=='B')}">
+                            B. essere disoccupato/inoccupato a far data dal 1 Ottobre 2020, non beneficiare di alcuna
+                            misura
+                            di sostegno al reddito e il reddito netto complessivo dell’intero nucleo familiare non sia
+                            superiore ad € 1.200,00 mensili;</p>
+                        <br>
+
+                        <mat-radio-button value="C">C</mat-radio-button>
+                        <p [ngClass]="{'big-p': (economicSituationFormGroup.controls.economicalSituation.value=='C')}">
+                            C. essere titolare di reddito di pensione con un reddito netto complessivo non superiore ad
+                            €
+                            700,00 mensili, nel caso in cui il nucleo familiare sia composto solamente dal dichiarante;
+                            nel
+                            caso in cui il nucleo familiare sia composto da due o più componenti, il reddito netto
+                            complessivo dell’intero nucleo familiare non deve essere superiore ad € 1.200,00 mensili;
+                        </p>
+                        <br>
+
+                        <mat-radio-button value="D">D</mat-radio-button>
+                        <p [ngClass]="{'big-p': (economicSituationFormGroup.controls.economicalSituation.value=='D')}">
+                            D. essere titolare di reddito derivante da misure di sostegno quali reddito di cittadinanza,
+                            reddito di emergenza, reddito di inclusione, naspi, mini naspi, asdi nonché le diverse forme
+                            di
+                            cassa integrazione, con un reddito netto complessivo non superiore ad € 700,00 mensili, nel
+                            caso
+                            in cui il nucleo familiare sia composto solamente dal dichiarante; nel caso in cui il nucleo
+                            familiare sia composto da due o più componenti, il reddito netto complessivo dell’intero
+                            nucleo
+                            familiare non deve essere superiore ad € 1.200,00 mensili;</p>
+                        <br>
+
+                        <mat-radio-button value="E">E</mat-radio-button>
+                        <p [ngClass]="{'big-p': (economicSituationFormGroup.controls.economicalSituation.value=='E')}">
+                            E. essere titolare di un reddito da lavoro dipendente e/o un reddito ad esso assimilato con
+                            un
+                            reddito netto complessivo non superiore ad € 700,00 mensili, nel caso in cui il nucleo
+                            familiare
+                            sia composto solamente dal dichiarante; nel caso in cui il nucleo familiare sia composto da
+                            due
+                            o più componenti, il reddito netto complessivo dell’intero nucleo familiare non deve essere
+                            superiore ad € 1.200,00 mensili;</p>
+                        <br>
+
+                        <mat-radio-button value="F">F</mat-radio-button>
+                        <p [ngClass]="{'big-p': (economicSituationFormGroup.controls.economicalSituation.value=='F')}">
+                            F. essere titolare di un reddito da lavoro autonomo (con Partita Iva) e/o un reddito ad esso
+                            assimilabile (senza Partita Iva, a titolo esemplificativo: prestazioni occasionali
+                            certificate),
+                            aver realizzato un fatturato e/o corrispettivi per il periodo di imposta 2019 non superiore
+                            ad €
+                            25.000,00 (ad eccezione delle attività iniziate a partire dal 1/01/2020) ed aver conseguito
+                            nel
+                            mese di Ottobre 2020 un reddito netto complessivo non superiore ad € 700,00 mensili, nel
+                            caso in
+                            cui il nucleo familiare sia composto solamente dal dichiarante; nel caso in cui il nucleo
+                            familiare sia composto da due o più componenti, il reddito netto complessivo dell’intero
+                            nucleo
+                            familiare non deve essere superiore ad € 1.200,00 mensili; </p>
+                        <br>
+                    </mat-radio-group>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="end top">
+                    <button mat-button matStepperPrevious>Indietro</button>
+                    <button mat-button matStepperNext mat-raised-button color="primary">Avanti</button>
+                </div>
+            </form>
+        </mat-step>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <mat-step [completed]="fiscalFormIsCompleted">
+            <ng-template matStepLabel>Dati fiscali</ng-template>
+
+            <form [formGroup]="fiscalDataValueFormGroup">
+                <div [ngSwitch]="economicSituationFormGroup.controls.economicalSituation.value">
+                    <div *ngSwitchCase="'A'">
+                        <h3>Confermi che il reddito netto complessivo del nucleo familiare per i mesi di ottobre e
+                            novembre 2020 è pari a Zero?</h3>
+                        <br>
+                        <mat-radio-group aria-label="Select an option" formControlName="incomeConfirmationControl"
+                            required>
+                            <mat-radio-button class="principalRequirementRadio" value="1">SI</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div *ngSwitchCase="'B'">
+                        <div>
+                            <h3>Redditi netti complessivi del nucleo familiare nel mese di Ottobre 2020:</h3>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Inserire sole cifre</mat-label>
+                                <input matInput type="number" formControlName="octoberIncome" required>
+                                <span matPrefix>€&nbsp;&nbsp;</span>
+                                <span matSuffix>.00</span>
+                                <mat-error>Compilare il campo!</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <h4>Fonte del reddito</h4>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Fonte del reddito</mat-label>
+                                <input matInput formControlName="incomeReason" required>
+                                <mat-error>Compilare il campo!</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="'C'">
+                        <div>
+                            <h3>Redditi netti complessivi del nucleo familiare nel mese di Ottobre 2020:</h3>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Inserire sole cifre</mat-label>
+                                <input matInput type="number" formControlName="octoberIncome" required>
+                                <span matPrefix>€&nbsp;&nbsp;</span>
+                                <span matSuffix>.00</span>
+                                <mat-error>Compilare il campo!</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="'D'">
+                        <div>
+                            <h3>Redditi netti complessivi del nucleo familiare nel mese di Ottobre 2020:</h3>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Inserire sole cifre</mat-label>
+                                <input matInput type="number" formControlName="octoberIncome" required>
+                                <span matPrefix>€&nbsp;&nbsp;</span>
+                                <span matSuffix>.00</span>
+                                <mat-error>Compilare il campo!</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <h4>Fonte del reddito</h4>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Fonte del reddito</mat-label>
+                                <input matInput formControlName="incomeReason" required>
+                                <mat-error>Compilare il campo!</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="'E'">
+                        <div>
+                            <h3>Redditi netti complessivi del nucleo familiare nel mese di Ottobre 2020:</h3>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Inserire sole cifre</mat-label>
+                                <input matInput type="number" formControlName="octoberIncome" required>
+                                <span matPrefix>€&nbsp;&nbsp;</span>
+                                <span matSuffix>.00</span>
+                                <mat-error>Compilare il campo!</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="'F'">
+                        <div>
+                            <h3>Fatturato e/o corrispettivi per il periodo di imposta 2019 (Massimo € 25.000,00)</h3>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Inserire sole cifre</mat-label>
+                                <input matInput type="number" formControlName="prevYearIncome" required>
+                                <span matPrefix>€&nbsp;&nbsp;</span>
+                                <span matSuffix>.00</span>
+                                <mat-error>Compilare il campo!</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <h3>Redditi netti complessivi del nucleo familiare nel mese di Ottobre 2020:</h3>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Inserire sole cifre</mat-label>
+                                <input matInput type="number" formControlName="octoberIncome" required>
+                                <span matPrefix>&nbsp;€</span>
+                                <span matSuffix>.00</span>
+                                <mat-error>Compilare il campo!</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div *ngSwitchDefault>
+                        Problema nell'inserimento della condizione economica.
+                    </div>
+                    <p>Si precisa che non rientrano nel calcolo dei redditi netti complessivi mensili le indennità
+                        di accompagnamento, gli assegni di cura, le indennità di frequenza e le pensioni di
+                        invalidità.</p>
+                    <br><br>
+                    <h3>Il dato inserito sarà trasmesso e verificato dagli Enti preposti (Agenzia delle Entrate e
+                        Guardia di Finanza).</h3>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="end top">
+                    <button mat-button matStepperPrevious>Indietro</button>
+                    <button mat-button mat-raised-button color="primary"
+                        (click)="checkFiscalDataValue(stepper)">Verifica
+                        e vai avanti</button>
+                </div>
+            </form>
+        </mat-step>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <mat-step>
+            <ng-template matStepLabel>Riepilogo</ng-template>
+
+
+            <div id="dichiarazione">
+                <div id="intestazione">
+                    <img src="https://www.comune.santamarialacarita.na.it/public/th.gif" />
+                    <h3>Comune di Santa Maria la Carità</h3>
+                    <h4>Città Metropolitana di Napoli</h4>
+                </div>
+
+                <p class="rtl">
+                    <b>Al Sindaco Avv. Giosuè C.M.A. D’Amora</b>
+                    <br>Comune di Santa Maria La Carità
+                </p>
+
+                <p id="oggetto"><b>Oggetto:</b> DOMANDA DI AMMISSIONE EROGAZIONE BUONI SPESA
+                    MISURA DI SOLIDARIETA’ ALIMENTARE D.L. N. 154 DEL 23/11/2020
+                    EMERGENZA EPIDEMIOLOGICA COVID 19</p>
+                <p>
+                    Il/La sottoscritto/a {{ anagraficFormGroup.controls.lastname.value }}
+                    {{ anagraficFormGroup.controls.firstname.value }}
+                    residente in Santa Maria la Carità (Na) alla via {{ residenceFormGroup.controls.address.value }} n.
+                    {{ residenceFormGroup.controls.address2.value }}
+                    Codice Fiscale {{ anagraficFormGroup.controls.taxId.value }}
+                    cell {{ anagraficFormGroup.controls.mobile.value }} 
+                    <span *ngIf="(anagraficFormGroup.controls.email.value != '')">email
+                    {{ anagraficFormGroup.controls.email.value }}</span>
+                    in riferimento all’Avviso Pubblico “MISURA DI SOLIDARIETA’ ALIMENTARE in attuazione del D. L. n. 154
+                    del 23/11/2020, recante “Misure finanziarie urgenti connesse all’emergenza epidemiologica da
+                    Covid-19, c.d. “Decreto Ristori ter” - EMERGENZA EPIDEMIOLOGICA DA COVID 19- INDIVIDUAZIONE DEI
+                    NUCLEI BENEFICIARI DEI BUONI SPESA”,
+                </p>
+
+
+                <h3>Consapevole</h3>
+                <ul>
+                    <li>che ai sensi dell’art. 76, comma 1 del DPR 445/2000, le dichiarazioni mendaci, le falsità in
+                        atti, l’uso di atti falsi sono puniti ai sensi del codice penale; che, ai sensi dell’art. 75 del
+                        DPR n. 445/2000, il dichiarante decade dai benefici eventualmente conseguiti da provvedimenti
+                        emanati sulla base di dichiarazioni non veritiere; che, ai sensi dell’art. 71 del DPR 445/2000,
+                        l’Ente ha l’obbligo di effettuare idonei controlli, anche a campione, sulla veridicità di quanto
+                        dichiarato, ai sensi degli artt. 46 e 47 del DPR 445/2000;</li>
+                    <li>che tutte le informazioni fornite saranno trasmesse dal Comune di Santa Maria la Carità alle
+                        Autorità competenti (Guardia di Finanza, Agenzia delle Entrate) per i controlli di rito sulla
+                        veridicità delle stesse;</li>
+                </ul>
+
+                <h3>Chiede</h3>
+                <p>
+                    di essere ammesso all’erogazione di buoni spesa da utilizzare presso gli esercizi commerciali
+                    aderenti del territorio comunale;
+                </p>
+
+                <h3>Dichiara</h3>
+                <ul>
+                    <li>
+                        di aver subìto un grave deterioramento della propria condizione economico-finanziaria
+                        determinatasi per effetto delle conseguenze dell’emergenza epidemiologica da Covid-19;
+                    </li>
+                    <li>
+                        di possedere al 30/11/2020 un saldo disponibile di conto corrente bancario/postale e/o un saldo
+                        derivante da libretti di risparmio bancari/postali, complessivamente per l'intero nucleo
+                        familiare
+                        non superiore a € 15.000,00 e precisamente:
+                        <span *ngIf="principalRequirementFormGroup.controls.accountBalance.value == 'A'">minore di
+                            &euro; 5.000,00;</span>
+                        <span *ngIf="principalRequirementFormGroup.controls.accountBalance.value == 'B'">da &euro;
+                            5.000,01 a &euro;15.000,00;</span>
+                    </li>
+                    <li>
+                        che pertanto il proprio nucleo familiare, come si evince dallo STATO DI FAMIGLIA è composto da:
+                        {{ anagraficFormGroup.controls.adult.value }} adulti
+                        <span *ngIf="(anagraficFormGroup.controls.children.value != '')">
+                            e {{ anagraficFormGroup.controls.children.value }} minori (0-18 anni)
+                        </span>
+                        complessivi presenti nel nucleo familiare;
+                    </li>
+                    <li *ngIf="(residenceFormGroup.controls.rentOrMutal.value == 1)">
+                        che il proprio nucleo familiare è residente in immobile adibito ad abitazione principale ed in
+                        possesso di contratto di locazione registrato oppure titolare di contratto di mutuo;
+                    </li>
+                    <li>
+                        che la suddetta istanza è l’unica presentata dal proprio nucleo familiare;
+                    </li>
+                    <li [ngSwitch]="economicSituationFormGroup.controls.economicalSituation.value">
+                        <span *ngSwitchCase="'A'">
+                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Ottobre 2020, non beneficiare di
+                            alcuna
+                            misura di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito;
+                        </span>
+                        <span *ngSwitchCase="'B'">
+                            <u>FASCIA B</u> - essere disoccupato/inoccupato a far data dal 1 Ottobre 2020, non beneficiare di
+                            alcuna
+                            misura di sostegno al reddito, ed il reddito netto complessivo dell’intero nucleo familiare
+                            nel mese
+                            di Ottobre 2020 pari a
+                            <b>{{ fiscalDataValueFormGroup.controls.octoberIncome.value | currency: "EUR" }}</b>
+                            derivante da: {{ fiscalDataValueFormGroup.controls.incomeReason.value }};
+                        </span>
+                        <span *ngSwitchCase="'C'">
+                            <u>FASCIA C</u> - essere titolare di reddito di pensione con un reddito netto complessivo
+                            dell’intero nucleo familiare
+                            nel mese
+                            di Ottobre 2020 pari a
+                            <b>{{ fiscalDataValueFormGroup.controls.octoberIncome.value | currency: "EUR" }}</b>;
+                        </span>
+                        <span *ngSwitchCase="'D'">
+                            <u>FASCIA D</u> - essere titolare di reddito derivante da misure di sostegno quali reddito di
+                            cittadinanza,
+                            reddito di emergenza, reddito di inclusione, naspi, mini naspi, asdi nonché le diverse forme
+                            di cassa integrazione, ed il reddito netto complessivo dell’intero nucleo familiare nel mese
+                            di Ottobre 2020 pari a
+                            <b>{{ fiscalDataValueFormGroup.controls.octoberIncome.value | currency: "EUR" }}</b>
+                            derivante da: {{ fiscalDataValueFormGroup.controls.incomeReason.value }};
+                        </span>
+                        <span *ngSwitchCase="'E'">
+                            <u>FASCIA E</u> - essere titolare di un reddito da lavoro dipendente e/o un reddito ad esso
+                            assimilato con
+                            un reddito netto complessivo per il mese di Ottobre 2020 pari a
+                            <b>{{ fiscalDataValueFormGroup.controls.octoberIncome.value | currency: "EUR" }}</b>;
+                        </span>
+                        <span *ngSwitchCase="'F'">
+                            <u>FASCIA F</u> - essere titolare di un reddito da lavoro autonomo (con Partita Iva) e/o un reddito
+                            ad esso
+                            assimilabile (senza Partita Iva, a titolo esemplificativo: prestazioni occasionali
+                            certificate), aver realizzato un fatturato e/o corrispettivi per il periodo di imposta 2019
+                            pari a <b>{{ fiscalDataValueFormGroup.controls.prevYearIncome.value | currency: "EUR" }}</b>
+                            (ad eccezione delle attività iniziate a partire dal 1/01/2020) ed aver
+                            conseguito nel mese di Ottobre 2020 un reddito netto complessivo pari a
+                            <b>{{ fiscalDataValueFormGroup.controls.octoberIncome.value | currency: "EUR" }}</b>;
+                        </span>
+                    </li>
+                    <li>
+                        di autorizzare il trattamento dei dati personali ai sensi dell’art. 13 del Decreto Legislativo
+                        30 Giugno 2003, n. 196 “Codice in materia di protezione dei dati personali” e dell’art. 13 del
+                        GDPR (Regolamento UE 679/2016).
+                    </li>
+
+                </ul>
+            </div>
+
+
+            <br><br><br>
+
+
+            <div fxLayout="row" fxLayoutAlign="end top">
+                <h3>Prima di confermare rileggi quanto dichiarato!</h3>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end top">
+                <button mat-button matStepperPrevious>Indietro</button>
+                <button mat-button mat-raised-button color="accent" (click)="confirmation(stepper)">Conferma ed
+                    invia</button>
+            </div>
+        </mat-step>
+
+
+    </mat-horizontal-stepper>
+</div>
