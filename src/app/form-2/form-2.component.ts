@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ComplexApiControllerService, ComplexSolidarityRequestDTO, ComplexSolidarityRequestDTOFamily } from 'aig-solidarety';
 
 @Component({
     selector: 'form-2',
@@ -7,6 +8,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     styleUrls: ['./form-2.component.scss']
 })
 export class Form2Component implements OnInit {
+    inTrasmission: boolean = false;
+
+    trasmissionStatus = 0;
+    trasmissionError;
+    showTrasmissionError = false;
+
     isLinear = true;
     principalRequirementIsCompleted = false;
     fiscalFormIsCompleted = false;
@@ -17,8 +24,11 @@ export class Form2Component implements OnInit {
     economicSituationFormGroup: FormGroup;
     fiscalDataValueFormGroup: FormGroup;
 
+    confirmationId;
+
     constructor(
         private _formBuilder: FormBuilder,
+        private complexApiControllerService: ComplexApiControllerService,
     ) { }
 
     ngOnInit(): void {
@@ -63,7 +73,7 @@ export class Form2Component implements OnInit {
         let accountBalanceValue = this.principalRequirementFormGroup.controls.accountBalance.value;
         this.principalRequirementIsCompleted = false;
 
-        if($event != null) {
+        if ($event != null) {
             accountBalanceValue = $event.value;
         }
 
@@ -101,44 +111,30 @@ export class Form2Component implements OnInit {
         switch (economicalSituation) {
             case 'A':
                 if (this.fiscalDataValueFormGroup.controls.incomeConfirmationControl.invalid) {
-                    console.log("compila il campo");
                     break;
                 }
                 if (this.fiscalDataValueFormGroup.controls.incomeConfirmationControl.value == 0) {
-                    console.log("Non va bene");
                     break;
                 }
-                console.log("OK:", this.fiscalDataValueFormGroup.controls.incomeConfirmationControl.value);
                 this.fiscalFormIsCompleted = true;
                 break;
             case 'B': case 'D':
                 if (this.fiscalDataValueFormGroup.controls.octoberIncome.invalid || this.fiscalDataValueFormGroup.controls.incomeReason.invalid) {
-                    console.log("compila il campo");
                     break;
                 }
-                console.log(this.fiscalDataValueFormGroup.controls.octoberIncome.value);
-                console.log(this.fiscalDataValueFormGroup.controls.incomeReason.value);
                 this.fiscalFormIsCompleted = true;
                 break;
             case 'C': case 'E':
                 if (this.fiscalDataValueFormGroup.controls.octoberIncome.invalid) {
-                    console.log("compila il campo");
                     break;
                 }
-                console.log(this.fiscalDataValueFormGroup.controls.octoberIncome.value);
                 this.fiscalFormIsCompleted = true;
                 break;
             case 'F':
                 if (this.fiscalDataValueFormGroup.controls.prevYearIncome.invalid || this.fiscalDataValueFormGroup.controls.octoberIncome.invalid) {
-                    console.log("compila il campo");
                     break;
                 }
-                console.log(this.fiscalDataValueFormGroup.controls.prevYearIncome.value);
-                console.log(this.fiscalDataValueFormGroup.controls.octoberIncome.value);
                 this.fiscalFormIsCompleted = true;
-                break;
-            default:
-                this.principalRequirementError = "Selezionare la condizione economica!";
                 break;
         }
 
@@ -146,7 +142,38 @@ export class Form2Component implements OnInit {
     }
 
 
-    confirmation(stepper): void {
+    async confirmation() {
+        this.inTrasmission = true;
+        this.trasmissionStatus = 0;
+        this.showTrasmissionError = false;
 
+        let request: ComplexSolidarityRequestDTO = {
+            telephone: this.principalRequirementFormGroup.controls.accountBalance.value,//conto
+            firstname: this.anagraficFormGroup.controls.firstname.value,
+            lastname: this.anagraficFormGroup.controls.lastname.value,
+            taxId: this.anagraficFormGroup.controls.taxId.value,
+            email: this.anagraficFormGroup.controls.email.value,
+            mobile: this.anagraficFormGroup.controls.mobile.value,
+            family: {
+                adult: this.anagraficFormGroup.controls.adult.value,
+                children: (this.anagraficFormGroup.controls.children.value == "") ? 0 : this.anagraficFormGroup.controls.children.value,
+            },
+            address: this.residenceFormGroup.controls.address.value,
+            address2: this.residenceFormGroup.controls.address2.value,
+            requestStatusA: (this.residenceFormGroup.controls.rentOrMutal.value == '1') ? true : false, //fitto o mutuo
+            cap: this.economicSituationFormGroup.controls.economicalSituation.value, //fascia
+            requestStatusBIncomeMar: this.fiscalDataValueFormGroup.controls.octoberIncome.value,//reddito ottobre
+            city: this.fiscalDataValueFormGroup.controls.incomeReason.value,//motivo reddito
+            requestStatusBIncomeFeb: this.fiscalDataValueFormGroup.controls.prevYearIncome.value//reddito anno prec
+        }
+
+        try {
+            let response = await this.complexApiControllerService.complexSolidarityRequestPost(request).toPromise();
+            this.confirmationId = response.id;
+            this.trasmissionStatus = 1;
+        } catch (e) {
+            this.trasmissionStatus = 2;
+            this.trasmissionError = e;
+        }
     }
 }

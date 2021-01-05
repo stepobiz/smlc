@@ -1,10 +1,22 @@
-<div style="width: 100%; padding: 10px;">
-    <h2>DOMANDA DI AMMISSIONE EROGAZIONE BUONI SPESA</h2>
+<h2>DOMANDA DI AMMISSIONE EROGAZIONE BUONI SPESA</h2>
 
-    <hr>
+<hr>
 
 
-    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+
+
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="!inTrasmission" id="formAndSteps">
+    <mat-horizontal-stepper [linear]="isLinear" #stepper style="width: 100%;">
 
 
 
@@ -474,9 +486,9 @@
                     residente in Santa Maria la Carità (Na) alla via {{ residenceFormGroup.controls.address.value }} n.
                     {{ residenceFormGroup.controls.address2.value }}
                     Codice Fiscale {{ anagraficFormGroup.controls.taxId.value }}
-                    cell {{ anagraficFormGroup.controls.mobile.value }} 
+                    cell {{ anagraficFormGroup.controls.mobile.value }}
                     <span *ngIf="(anagraficFormGroup.controls.email.value != '')">email
-                    {{ anagraficFormGroup.controls.email.value }}</span>
+                        {{ anagraficFormGroup.controls.email.value }}</span>
                     in riferimento all’Avviso Pubblico “MISURA DI SOLIDARIETA’ ALIMENTARE in attuazione del D. L. n. 154
                     del 23/11/2020, recante “Misure finanziarie urgenti connesse all’emergenza epidemiologica da
                     Covid-19, c.d. “Decreto Ristori ter” - EMERGENZA EPIDEMIOLOGICA DA COVID 19- INDIVIDUAZIONE DEI
@@ -536,12 +548,14 @@
                     </li>
                     <li [ngSwitch]="economicSituationFormGroup.controls.economicalSituation.value">
                         <span *ngSwitchCase="'A'">
-                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Ottobre 2020, non beneficiare di
+                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Ottobre 2020, non
+                            beneficiare di
                             alcuna
                             misura di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito;
                         </span>
                         <span *ngSwitchCase="'B'">
-                            <u>FASCIA B</u> - essere disoccupato/inoccupato a far data dal 1 Ottobre 2020, non beneficiare di
+                            <u>FASCIA B</u> - essere disoccupato/inoccupato a far data dal 1 Ottobre 2020, non
+                            beneficiare di
                             alcuna
                             misura di sostegno al reddito, ed il reddito netto complessivo dell’intero nucleo familiare
                             nel mese
@@ -557,7 +571,8 @@
                             <b>{{ fiscalDataValueFormGroup.controls.octoberIncome.value | currency: "EUR" }}</b>;
                         </span>
                         <span *ngSwitchCase="'D'">
-                            <u>FASCIA D</u> - essere titolare di reddito derivante da misure di sostegno quali reddito di
+                            <u>FASCIA D</u> - essere titolare di reddito derivante da misure di sostegno quali reddito
+                            di
                             cittadinanza,
                             reddito di emergenza, reddito di inclusione, naspi, mini naspi, asdi nonché le diverse forme
                             di cassa integrazione, ed il reddito netto complessivo dell’intero nucleo familiare nel mese
@@ -572,7 +587,8 @@
                             <b>{{ fiscalDataValueFormGroup.controls.octoberIncome.value | currency: "EUR" }}</b>;
                         </span>
                         <span *ngSwitchCase="'F'">
-                            <u>FASCIA F</u> - essere titolare di un reddito da lavoro autonomo (con Partita Iva) e/o un reddito
+                            <u>FASCIA F</u> - essere titolare di un reddito da lavoro autonomo (con Partita Iva) e/o un
+                            reddito
                             ad esso
                             assimilabile (senza Partita Iva, a titolo esemplificativo: prestazioni occasionali
                             certificate), aver realizzato un fatturato e/o corrispettivi per il periodo di imposta 2019
@@ -600,11 +616,54 @@
             </div>
             <div fxLayout="row" fxLayoutAlign="end top">
                 <button mat-button matStepperPrevious>Indietro</button>
-                <button mat-button mat-raised-button color="accent" (click)="confirmation(stepper)">Conferma ed
+                <button mat-button mat-raised-button color="accent" (click)="confirmation()">Conferma ed
                     invia</button>
             </div>
         </mat-step>
 
 
     </mat-horizontal-stepper>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="inTrasmission" id="trasmission">
+    <div [ngSwitch]="trasmissionStatus">
+        <div *ngSwitchCase="0">
+            <br><br><br><br>
+            <mat-spinner style="margin: 0 auto;"></mat-spinner>
+            <h3>INVIO DOMANDA ...</h3>
+            <br>
+            <br>
+        </div>
+        <div *ngSwitchCase="1">
+            <h3>Domanda inviata con successo!</h3>
+            <h2>Codice pratica <span style="color: red;">{{ confirmationId }}</span></h2>
+            <h2>Conserva questo codice! Ti servirà per conoscere l'esito della tua pratica.</h2>
+        </div>
+        <div *ngSwitchDefault>
+            <h3 style="color: red;">Errore nell'invio della domanda!</h3>
+            <h4>Ci scusiamo per il disagio, clicca su tasto "Riprova" per provare a trasmettere nuovamente l'istanza, se
+                il problema
+                persiste contatta l'help desk del Comune tramite la chat della pagina Facebook.</h4>
+            <button mat-button (click)="inTrasmission = false">Torna alla domanda</button>
+            <button mat-button mat-raised-button color="accent" (click)="confirmation()">Riprova</button>
+            <br>
+            <button mat-button (click)="showTrasmissionError = true">errore</button>
+            <pre style="text-align: left;" *ngIf="showTrasmissionError"><code>Error:{{ trasmissionError | json }}</code></pre>
+        </div>
+    </div>
 </div>

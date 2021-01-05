@@ -10,7 +10,7 @@
 
   .toolbar {
     height: 60px;
-    margin: -8px;
+    margin: -8px 0 0 0;
     display: flex;
     align-items: center;
     color: white;
@@ -23,7 +23,7 @@
 
   .content {
     display: flex;
-    margin: 32px auto;
+    margin: 25px auto;
     max-width: 1200px;
   }
 
@@ -34,31 +34,19 @@
 </style>
 
 
-<div fxFlex fxLayout="column">
-  <div fxLayout="row wrap" style="background-color: #1976d2;">
+<div>
+  <div style="background-color: #1976d2;">
     <div class="toolbar" role="banner">
       <img width="40" alt="SMLC Logo" src="https://www.comune.santamarialacarita.na.it/public/th.gif" />
       <span>Comune di Santa Maria la Carità</span>
     </div>
   </div>
-  <div fxLayout="row wrap" class="content">
-    <!--
-    <div fxFlex fxLayout="column">
-      <div style="min-width: 300px;">
-        <iframe width="100%" height="330" src="https://www.youtube.com/embed/6vXG-wri_Kw?controls=1" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </div>
-    -->    
-    <div fxFlex fxLayout="column">
-      
-      <form-2></form-2>
-
-      <!-- <app-form></app-form> -->
-    </div>
+  <div class="content">
+    <form-2 style="width: 100%;"></form-2>
   </div>
   <div fxLayout="row wrap" style="text-align: center;">
     <div class="content">
-      <b><a href="https://tspa.stepo.biz/software-of-solidariety/" target="_blank">Software of Solidariety</a>, sviluppato
+      <b><a href="https://tspa.stepo.biz/software-of-solidariety/" target="_blank">Software of Solidariety</a> (v2.0.4), sviluppato
         da <a href="https://tspa.stepo.biz/" target="_blank">Team Solidale Pubblica Amministrazione</a>.</b>
     </div>
   </div>

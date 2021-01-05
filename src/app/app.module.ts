@@ -19,6 +19,7 @@ import { TokenContextInterceptor } from './token-context.interceptor';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Form2Component } from './form-2/form-2.component';
 import { MatStepperModule } from '@angular/material';
+import { PjStefanoModule } from './modules/pj-stefano/pj-stefano.module';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,8 @@ import { MatStepperModule } from '@angular/material';
     MatRadioModule,
     MatProgressSpinnerModule,
     MatStepperModule,
+
+    PjStefanoModule,
   ],
   providers: [
     {
@@ -56,7 +59,7 @@ import { MatStepperModule } from '@angular/material';
     },
     {
       provide: AIG_SOLIDARETY_BASE_PATH,
-      useValue: "https://api-gest.stage.eneasys.net/" + "solidarety"
+      useValue: "https://api-gest.eneasys.net/" + "solidarety"
     },
   ],
   bootstrap: [AppComponent]
