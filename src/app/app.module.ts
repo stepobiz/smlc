@@ -19,7 +19,6 @@ import { TokenContextInterceptor } from './token-context.interceptor';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Form2Component } from './form-2/form-2.component';
 import { MatStepperModule } from '@angular/material';
-import { PjStefanoModule } from './modules/pj-stefano/pj-stefano.module';
 
 @NgModule({
   declarations: [
@@ -49,7 +48,6 @@ import { PjStefanoModule } from './modules/pj-stefano/pj-stefano.module';
     MatProgressSpinnerModule,
     MatStepperModule,
 
-    PjStefanoModule,
   ],
   providers: [
     {
