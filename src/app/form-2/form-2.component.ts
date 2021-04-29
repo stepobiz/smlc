@@ -34,7 +34,7 @@ export class Form2Component implements OnInit {
     ngOnInit(): void {
         this.principalRequirementFormGroup = this._formBuilder.group({
             accountBalance: ['', Validators.required],
-            reason: ['', Validators.required],
+            /* reason: ['', Validators.required],*/
         });
 
         this.anagraficFormGroup = this._formBuilder.group({
@@ -52,7 +52,7 @@ export class Form2Component implements OnInit {
         this.residenceFormGroup = this._formBuilder.group({
             address: ['', Validators.required],
             address2: ['', Validators.required],
-            //rentOrMutal: ['', Validators.required],
+            rentOrMutal: [''],
         });
 
         this.economicSituationFormGroup = this._formBuilder.group({
@@ -70,10 +70,10 @@ export class Form2Component implements OnInit {
     }
 
     principalRequirementError1;
-    principalRequirementError2;
+    /* principalRequirementError2; */
     checkPrincipalRequirement($event): void {
         let check1: boolean = true;
-        let check2: boolean = true;
+        /* let check2: boolean = true; */
 
         let accountBalanceValue = this.principalRequirementFormGroup.controls.accountBalance.value;
         this.principalRequirementIsCompleted = false;
@@ -82,26 +82,26 @@ export class Form2Component implements OnInit {
             accountBalanceValue = $event.value;
         }
 
-        if(this.principalRequirementFormGroup.controls.reason.status == "INVALID") {
+       /* if(this.principalRequirementFormGroup.controls.reason.status == "INVALID") {
             check1 = false;
             this.principalRequirementError2 = "Selezionare motivo della richiesta!";
-        }
+        } */
         switch (accountBalanceValue) {
             case 'A': case 'B': break;
             case 'C':
                 this.principalRequirementError1 = "NON E' POSSIBILE PRESENTARE L'ISTANZA";
-                check2 = false;
+                check1 = false;
                 break;
             default:
                 this.principalRequirementError1 = "Selezionare fascia!";
-                check2 = false;
+                check1 = false;
                 break;
         }
 
-        if(check1 && check2) {
+        if(check1 /* && check2 */) {
             this.principalRequirementIsCompleted = true;
             this.principalRequirementError1 = "";
-            this.principalRequirementError2 = "";
+            /* this.principalRequirementError2 = ""; */
         }
     }
     checkAndGoPrincipalRequirement(stepper): void {
@@ -174,9 +174,8 @@ export class Form2Component implements OnInit {
             },
             address: this.residenceFormGroup.controls.address.value,
             address2: this.residenceFormGroup.controls.address2.value,
-            
-            requestStatusA: (this.economicSituationFormGroup.controls.economicalSituation.value == 'A') ? true : false, //fitto o mutuo
-            requestStatusB: (this.economicSituationFormGroup.controls.economicalSituation.value == 'B') ? true : false, //fitto o mutuo
+            requestStatusA: (this.residenceFormGroup.controls.rentOrMutal.value == 'A') ? true : false, //fitto o mutuo
+            requestStatusB: (this.residenceFormGroup.controls.rentOrMutal.value == 'B') ? true : false, //fitto o mutuo
             
             cap: this.principalRequirementFormGroup.controls.reason.value, //fascia
             

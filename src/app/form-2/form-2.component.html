@@ -35,7 +35,7 @@
                 <h1>DISPONIBILITA' BANCARIA/POSTALE INTERO NUCLEO FAMILIARE</h1>
 
                 <div>
-                    <h3>Indicare il saldo disponibile al 30/11/2020 di conto corrente bancario/postale e/o un saldo
+                    <h3>Indicare il saldo disponibile al 01/01/2021 di conto corrente bancario/postale e/o un saldo
                         derivante
                         da libretti di risparmio bancari/postali, complessivamente per l'intero nucleo familiare non
                         superiore ad € 5.000,00 e precisamente:
@@ -65,7 +65,7 @@
                         Guardia di Finanza).</h3>
                 </div>
                 <hr>
-                <div>
+                <!-- <div>
                     <h3>Indicare il motivo per cui si richiede il contributo economico straordinario</h3>
 
                     <mat-radio-group aria-label="Select an option" formControlName="reason" required>
@@ -91,7 +91,7 @@
                     </div>
                     <h3>TALE DOCUMENTAZIONE DOVRA’ ESSERE PRESENTATA IN COPIA AL COMUNE INSIEME ALLA FOTOCOPIA DI VALIDO
                         DOCUMENTO DI RICONOSCIMENTO</h3>
-                </div>
+                </div> -->
 
                 <div fxLayout="row" fxLayoutAlign="end top">
                     <button mat-button mat-raised-button color="primary"
@@ -225,6 +225,22 @@
                     </mat-form-field>
                 </div>
 
+                <div>
+                    <h3>Selezionare tipologia </h3>
+
+                    <mat-radio-group aria-label="Select an option" formControlName="rentOrMutal">
+                        <mat-radio-button class="residenceRadio" value="A">
+                            <span class="fasce">Affittuario</span>
+                        </mat-radio-button>
+                        <br><br>
+                        <mat-radio-button class="residenceRadio" value="B">
+                            <span class="fasce">Pagante mutuo</span>
+                        </mat-radio-button>
+                        <br><br>
+                    </mat-radio-group>
+                    <br><br>
+                </div>
+
                 <div fxLayout="row" fxLayoutAlign="end top">
                     <button mat-button matStepperPrevious>Indietro</button>
                     <button mat-button matStepperNext mat-raised-button color="primary">Avanti</button>
@@ -260,7 +276,7 @@
                     <mat-radio-group formControlName="economicalSituation">
                         <mat-radio-button value="A">A</mat-radio-button>
                         <p [ngClass]="{'big-p': (economicSituationFormGroup.controls.economicalSituation.value=='A')}">
-                            A. essere disoccupato/inoccupato a far data dal 1 Novembre 2020, non beneficiare di alcuna
+                            A. essere disoccupato/inoccupato a far data dal 1 Gennaio 2021, non beneficiare di alcuna
                             misura
                             di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito;</p>
                         <br>
@@ -268,7 +284,7 @@
                         <mat-radio-button value="B">B</mat-radio-button>
                         <p [ngClass]="{'big-p': (economicSituationFormGroup.controls.economicalSituation.value=='B')}">
                             B. disporre per il proprio nucleo familiare di un reddito netto complessivo non superiore ad
-                            € 800,00 mensili (mese di riferimento reddito novembre 2020);</p>
+                            € 800,00 mensili (mese di riferimento reddito Gennaio 2021);</p>
                         <br>
 
                     </mat-radio-group>
@@ -301,7 +317,7 @@
             <form [formGroup]="fiscalDataValueFormGroup">
                 <div [ngSwitch]="economicSituationFormGroup.controls.economicalSituation.value">
                     <div *ngSwitchCase="'A'">
-                        <h3>Confermi che il reddito netto complessivo del nucleo familiare per il mese di novembre 2020 è
+                        <h3>Confermi che il reddito netto complessivo del nucleo familiare per il mese di Gennaio 2021 è
                             pari a ZERO?</h3>
                         <br>
                         <mat-radio-group aria-label="Select an option" formControlName="incomeConfirmationControl"
@@ -347,7 +363,7 @@
                             </mat-radio-group>
                         </div>
                         <div>
-                            <h3>Redditi netti complessivi del nucleo familiare nel mese di Novembre 2020:</h3>
+                            <h3>Redditi netti complessivi del nucleo familiare nel mese di Gennaio 2021:</h3>
                             <mat-form-field appearance="outline">
                                 <mat-label>Inserire sole cifre</mat-label>
                                 <input matInput type="number" formControlName="octoberIncome" required>
@@ -442,7 +458,7 @@
 
                 <h3>Dichiara</h3>
                 <ul>
-                    <li>
+                    <!-- <li>
                         di aver subìto un grave deterioramento della propria condizione economico-finanziaria
                         determinatasi per effetto delle conseguenze dell’emergenza epidemiologica da Covid-19, disagio
                         socio-economico che comporta difficoltà nel pagamento delle seguenti spese:
@@ -452,9 +468,9 @@
                             <b *ngSwitchCase="'C'">Pagamento delle spese mediche/farmaceutiche</b>
                             <b *ngSwitchCase="'D'">Acquisto di generi di prima necessità</b>
                         </span>;
-                    </li>
+                    </li> -->
                     <li>
-                        di possedere al 30/11/2020 un saldo disponibile di conto corrente bancario/postale e/o un saldo
+                        di possedere al 01/01/2021 un saldo disponibile di conto corrente bancario/postale e/o un saldo
                         derivante da libretti di risparmio bancari/postali, complessivamente per l'intero nucleo
                         familiare
                         non superiore a € 5.000,00 e precisamente:
@@ -476,7 +492,7 @@
                     </li>
                     <li [ngSwitch]="economicSituationFormGroup.controls.economicalSituation.value">
                         <span *ngSwitchCase="'A'">
-                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Novembre 2020, non
+                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Gennaio 2021, non
                             beneficiare di
                             alcuna
                             misura di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito;
