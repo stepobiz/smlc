@@ -1,4 +1,4 @@
-<h2>DOMANDA DI AMMISSIONE AL FONDO STRAORDINARIO DI SOLIDARIETA’</h2>
+<h2>DOMANDA DI AMMISSIONE EROGAZIONE BUONI SPESA</h2>
 
 <hr>
 
@@ -35,7 +35,7 @@
                 <h1>DISPONIBILITA' BANCARIA/POSTALE INTERO NUCLEO FAMILIARE</h1>
 
                 <div>
-                    <h3>Indicare il saldo disponibile al 01/01/2021 di conto corrente bancario/postale e/o un saldo
+                    <h3>Indicare il saldo disponibile al 31/12/2020 di conto corrente bancario/postale e/o un saldo
                         derivante
                         da libretti di risparmio bancari/postali, complessivamente per l'intero nucleo familiare non
                         superiore ad € 5.000,00 e precisamente:
@@ -226,19 +226,25 @@
                 </div>
 
                 <div>
-                    <h3>Selezionare tipologia </h3>
+                    <h3>INFORMAZIONI ABITAZIONE </h3>
 
                     <mat-radio-group aria-label="Select an option" formControlName="rentOrMutal">
                         <mat-radio-button class="residenceRadio" value="A">
-                            <span class="fasce">Affittuario</span>
+                            <span class="fasce">Di proprietà</span>
                         </mat-radio-button>
                         <br><br>
                         <mat-radio-button class="residenceRadio" value="B">
-                            <span class="fasce">Pagante mutuo</span>
+                            <span class="fasce">In comodato d'uso gratuito</span>
                         </mat-radio-button>
                         <br><br>
+                        <mat-radio-button class="residenceRadio" value="C">
+                            <span class="fasce">Con contratto di locazione</span>
+                        </mat-radio-button>
+                        <br><br>
+                        <mat-radio-button class="residenceRadio" value="D">
+                            <span class="fasce">Di proprietà con contratto di mutuo</span>
+                        </mat-radio-button>
                     </mat-radio-group>
-                    <br><br>
                 </div>
 
                 <div fxLayout="row" fxLayoutAlign="end top">
@@ -278,13 +284,13 @@
                         <p [ngClass]="{'big-p': (economicSituationFormGroup.controls.economicalSituation.value=='A')}">
                             A. essere disoccupato/inoccupato a far data dal 1 Gennaio 2021, non beneficiare di alcuna
                             misura
-                            di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito;</p>
+                            di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito (dal 1 gennaio 2021 ad oggi);</p>
                         <br>
 
                         <mat-radio-button value="B">B</mat-radio-button>
                         <p [ngClass]="{'big-p': (economicSituationFormGroup.controls.economicalSituation.value=='B')}">
                             B. disporre per il proprio nucleo familiare di un reddito netto complessivo non superiore ad
-                            € 800,00 mensili (mese di riferimento reddito Gennaio 2021);</p>
+                            € 900,00 mensili (mese di riferimento reddito Gennaio 2021);</p>
                         <br>
 
                     </mat-radio-group>
@@ -420,7 +426,7 @@
                     <br>Comune di Santa Maria La Carità
                 </p>
 
-                <p id="oggetto"><b>Oggetto:</b> DOMANDA DI AMMISSIONE FONDO STRAORDINARIO DI SOLIDARIETA’ - AUSILIO
+                <p id="oggetto"><b>Oggetto:</b> DOMANDA DI AMMISSIONE EROGAZIONE BUONI SPESA - AUSILIO
                     FINANZIARIO A CARATTERE STRAORDINARIO IN FAVORE DI NUCLEI FAMILIARI IN CONDIZIONI DI DISAGIO
                     SOCIO-ECONOMICO - EMERGENZA EPIDEMIOLOGICA COVID 19 -</p>
                 <p>
@@ -499,7 +505,7 @@
                         </span>
                         <span *ngSwitchCase="'B'">
                             <u>FASCIA B</u> - disporre per il proprio nucleo familiare di un reddito netto complessivo
-                            non superiore ad € 800,00 mensili e precisamente pari a:
+                            non superiore ad € 900,00 mensili e precisamente pari a:
                             <b>{{ fiscalDataValueFormGroup.controls.octoberIncome.value | currency: "EUR" }}</b>
                             derivante da: {{ fiscalDataValueFormGroup.controls.incomeReason.value }};
                         </span>
