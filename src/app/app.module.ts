@@ -18,13 +18,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenContextInterceptor } from './token-context.interceptor';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Form2Component } from './form-2/form-2.component';
-import { MatStepperModule } from '@angular/material';
+import { MatDatepickerModule, MatNativeDateModule, MatStepperModule } from '@angular/material';
+import { Form3Component } from './form-3/form-3.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Form2Component,
-    FormComponent
+	Form3Component,
+    FormComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,8 @@ import { MatStepperModule } from '@angular/material';
     MatRadioModule,
     MatProgressSpinnerModule,
     MatStepperModule,
+	MatDatepickerModule,
+	MatNativeDateModule,
 
   ],
   providers: [

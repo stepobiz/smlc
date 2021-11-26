@@ -1,0 +1,535 @@
+<h2>DOMANDA DI AMMISSIONE AL CONTRIBUTO PER IL SOSTEGNO AI CANONI DI LOCAZIONE PER LE ABITAZIONI PRINCIPALI (CONTRATTO DI FITTO ANNUALITA’ 2020)</h2>
+
+<hr>
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+<div *ngIf="!inTrasmission" id="formAndSteps">
+    <mat-horizontal-stepper [linear]="isLinear" #stepper style="width: 100%;">
+
+
+
+
+
+
+
+
+
+
+
+
+        <mat-step [stepControl]="principalRequirementFormGroup">
+            <ng-template matStepLabel>Requisito principale</ng-template>
+            <form [formGroup]="principalRequirementFormGroup">
+                <h1>VALORE ISE IN CORSO DI VALIDITA'</h1>
+
+                <div>
+                    <h3>(ATTENZIONE inserire ISE non il valore ISEE):</h3>
+
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Importo</mat-label>
+                        <input matInput formControlName="accountBalance" required>
+                        <mat-icon matSuffix class="secondary-text">euro</mat-icon>
+                        <mat-error>Importo non conforme, non è possibile presentare la domanda!</mat-error>
+                    </mat-form-field>
+
+
+                    <h3>Il dato inserito sarà trasmesso e verificato dagli Enti preposti (Agenzia delle Entrate e
+                        Guardia di Finanza).</h3>
+                </div>
+                <hr>
+
+                <div fxLayout="row" fxLayoutAlign="end top">
+                    <button mat-button matStepperNext mat-raised-button color="primary">Avanti</button>
+                </div>
+            </form>
+        </mat-step>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <mat-step [stepControl]="anagraficFormGroup">
+            <ng-template matStepLabel>Dati anagrafici</ng-template>
+
+            <form [formGroup]="anagraficFormGroup">
+                <h3>Dati richiedente</h3>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nome</mat-label>
+                        <input matInput formControlName="firstname" required>
+                        <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                        <mat-error>Il nome è obbligatorio!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Cognome</mat-label>
+                        <input matInput formControlName="lastname" required>
+                        <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                        <mat-error>Il cognome è obbligatorio!</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Codice Fiscale</mat-label>
+                        <input matInput formControlName="taxId" required>
+                        <mat-icon matSuffix class="secondary-text">code</mat-icon>
+                        <mat-error>Il codice fiscale è obbligatorio!</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <h3>Contatti</h3>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email">
+                        <mat-icon matSuffix class="secondary-text">email</mat-icon>
+                        <mat-error>L' Email è obbligatoria!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Cellulare</mat-label>
+                        <input matInput formControlName="mobile" type="number" required>
+                        <mat-icon matSuffix class="secondary-text">mobile_friendly</mat-icon>
+                        <mat-error>Il numero di cellulare è obbligatorio!</mat-error>
+                    </mat-form-field>
+                    Sul cellulare inserito perverranno eventuali comunicazioni.
+                </div>
+
+                <h3>Nucleo Familiare</h3>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Adulti</mat-label>
+                        <input matInput formControlName="adult" type="number" required>
+                        <mat-error>Il numero di adulti è obbligatorio!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Minori</mat-label>
+                        <input matInput formControlName="children" type="number">
+                    </mat-form-field>
+                    Numero di minori ( 0-18 anni) presenti nel nucleo familiare.
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="end top">
+                    <button mat-button matStepperPrevious>Indietro</button>
+                    <button mat-button matStepperNext mat-raised-button color="primary">Avanti</button>
+                </div>
+            </form>
+        </mat-step>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <mat-step [stepControl]="residenceFormGroup">
+            <ng-template matStepLabel>Informazioni residenza</ng-template>
+
+            <form [formGroup]="residenceFormGroup">
+                <h2>Informazioni sulla residenza del nucleo familiare</h2>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Via</mat-label>
+                        <input matInput formControlName="address" required>
+                        <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                        <mat-error>La via è obbligatoria!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Civico</mat-label>
+                        <input matInput formControlName="address2" required>
+                        <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                        <mat-error>Il civico è obbligatorio!</mat-error>
+                    </mat-form-field>
+                </div>
+
+
+                <div fxLayout="row" fxLayoutAlign="end top">
+                    <button mat-button matStepperPrevious>Indietro</button>
+                    <button mat-button matStepperNext mat-raised-button color="primary">Avanti</button>
+                </div>
+            </form>
+        </mat-step>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <mat-step [stepControl]="economicSituationFormGroup">
+            <ng-template matStepLabel>Dati Contratto</ng-template>
+
+            <form [formGroup]="economicSituationFormGroup">
+				<h2>Dati contratto di locazione</h2>
+                <div>
+                    <mat-form-field appearance="outline">
+						<mat-label>Data stipula contratto</mat-label>
+						<input matInput [matDatepicker]="datepicker">
+						<mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+						<mat-datepicker #datepicker>
+						  
+							<button mat-button matDatepickerCancel>Annulla</button>
+							<button mat-raised-button color="primary" matDatepickerApply>Conferma</button>
+						
+						</mat-datepicker>
+					</mat-form-field>
+
+					
+					<mat-form-field appearance="outline">
+                        <mat-label>Importo mensile registrato </mat-label>
+                        <input matInput formControlName="mobile" type="number" required>
+                        <mat-icon matSuffix class="secondary-text">euro</mat-icon>
+                        <mat-error>L'importo è obbligatorio!</mat-error>
+                    </mat-form-field>
+
+				</div>
+
+				<div>
+					<h3>Registrato all'Agenzia delle Entrate:</h3>
+
+					<mat-form-field appearance="outline" >
+						<mat-label>Riferimento</mat-label>
+						<input matInput>
+					</mat-form-field>
+					
+					<mat-form-field appearance="outline" >
+						<mat-label>Numero</mat-label>
+						<input matInput type="number">
+					</mat-form-field>
+				</div>
+				
+
+				<div>
+					<h3>Iban conto corrente postale o bancario per l'accredito dell'eventuale contributo </h3>
+					<mat-form-field appearance="outline" >
+						<mat-label>Iban</mat-label>
+						<input matInput>
+					</mat-form-field>
+				</div>
+                <div fxLayout="row" fxLayoutAlign="end top">
+                    <button mat-button matStepperPrevious>Indietro</button>
+                    <button mat-button matStepperNext mat-raised-button color="primary">Avanti</button>
+                </div>
+            </form>
+        </mat-step>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <mat-step [completed]="fiscalFormIsCompleted">
+            <ng-template matStepLabel>Dati Reddito e Contratto</ng-template>
+
+
+            <form [formGroup]="fiscalDataValueFormGroup">
+                <div>
+                    <div>
+                        <!--<div>
+                            <h4>Fonte del reddito</h4>
+                            <mat-radio-group aria-label="Select an option" formControlName="incomeReason" required>
+                                <mat-radio-button class="principalRequirementRadio" value="LAVORO DIPENDENTE">
+                                    <span class="fasce">LAVORO DIPENDENTE</span>
+                                </mat-radio-button>
+                                <br><br>
+                                <mat-radio-button class="principalRequirementRadio" value="PENSIONE">
+                                    <span class="fasce">PENSIONE</span>
+                                </mat-radio-button>
+                                <br><br>
+                                <mat-radio-button class="principalRequirementRadio" value="REDDITO DI CITTADINANZA">
+                                    <span class="fasce">REDDITO DI CITTADINANZA</span>
+                                </mat-radio-button>
+                                <br><br>
+                                <mat-radio-button class="principalRequirementRadio" value="REDDITO DI EMERGENZA">
+                                    <span class="fasce">REDDITO DI EMERGENZA</span>
+                                </mat-radio-button>
+                                <br><br>
+                                <mat-radio-button class="principalRequirementRadio" value="REDDITO DI INCLUSIONE">
+                                    <span class="fasce">REDDITO DI INCLUSIONE</span>
+                                </mat-radio-button>
+                                <br><br>
+                                <mat-radio-button class="principalRequirementRadio" value="NASPI, MINI NASPI, ASDI">
+                                    <span class="fasce">NASPI, MINI NASPI, ASDI</span>
+                                </mat-radio-button>
+                                <br><br>
+                                <mat-radio-button class="principalRequirementRadio" value="CASSA INTEGRAZIONE">
+                                    <span class="fasce">CASSA INTEGRAZIONE</span>
+                                </mat-radio-button>
+                                <br><br>
+                                <mat-radio-button class="principalRequirementRadio" value="ALTRO">
+                                    <span class="fasce">ALTRO</span>
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+					-->
+                        <div>
+                            <h3>(ATTENZIONE inserire ISE non il valore ISEE):</h3>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Inserire sole cifre</mat-label>
+                                <input matInput type="number" formControlName="octoberIncome" required>
+                                <span matPrefix>€&nbsp;&nbsp;</span>
+                                <span matSuffix>.00</span>
+                                <mat-error>Compilare il campo!</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div >
+                        Problema nell'inserimento della condizione economica.
+                    </div>
+                    <br><br>
+                    <h3>Il dato inserito sarà trasmesso e verificato dagli Enti preposti (Agenzia delle Entrate e
+                        Guardia di Finanza).</h3>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="end top">
+                    <button mat-button matStepperPrevious>Indietro</button>
+                    <button mat-button mat-raised-button color="primary"
+                        (click)="checkFiscalDataValue(stepper)">Verifica
+                        e vai avanti</button>
+                </div>
+            </form>
+        </mat-step>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <mat-step>
+            <ng-template matStepLabel>Riepilogo</ng-template>
+
+
+            <div id="dichiarazione">
+                <div id="intestazione">
+                    <img src="https://www.comune.santamarialacarita.na.it/public/th.gif" />
+                    <h3>Comune di Santa Maria la Carità</h3>
+                    <h4>Città Metropolitana di Napoli</h4>
+                </div>
+
+                <p class="rtl">
+                    <b>Al Sindaco Avv. Giosuè C.M.A. D’Amora</b>
+                    <br>Comune di Santa Maria La Carità
+                </p>
+
+                <p id="oggetto"><b>Oggetto:</b>FONDO DI SOLIDARIETA’ in attuazione del D. L. n. 73 del 25/05/2021, art. 53.
+					Agevolazioni straordinarie: generi alimentari di prima necessità, buoni spesa digitali </p>
+                <p>
+                    Il/La sottoscritto/a {{ anagraficFormGroup.controls.lastname.value }}
+                    {{ anagraficFormGroup.controls.firstname.value }}
+                    residente in Santa Maria la Carità (Na) alla via {{ residenceFormGroup.controls.address.value }} n.
+                    {{ residenceFormGroup.controls.address2.value }}
+                    Codice Fiscale {{ anagraficFormGroup.controls.taxId.value }}
+                    cell {{ anagraficFormGroup.controls.mobile.value }}
+                    <span *ngIf="(anagraficFormGroup.controls.email.value != '')">email
+                        {{ anagraficFormGroup.controls.email.value }}</span>
+						In riferimento all’AVVISO PUBBLICO “FONDO DI SOLIDARIETA’ in attuazione del D.L. n. 73 del 25/05/2021, art. 53;,
+                </p>
+
+
+                <h3>Consapevole</h3>
+                <ul>
+                    <li>che ai sensi dell’art. 76, comma 1 del DPR 445/2000, le dichiarazioni mendaci, le falsità in
+                        atti, l’uso di atti falsi sono puniti ai sensi del codice penale; che, ai sensi dell’art. 75 del
+                        DPR n. 445/2000, il dichiarante decade dai benefici eventualmente conseguiti da provvedimenti
+                        emanati sulla base di dichiarazioni non veritiere; che, ai sensi dell’art. 71 del DPR 445/2000,
+                        l’Ente ha l’obbligo di effettuare idonei controlli, anche a campione, sulla veridicità di quanto
+                        dichiarato, ai sensi degli artt. 46 e 47 del DPR 445/2000;</li>
+                    <li>che tutte le informazioni fornite saranno trasmesse dal Comune di Santa Maria la Carità alle
+                        Autorità competenti (Guardia di Finanza, Agenzia delle Entrate) per i controlli di rito sulla
+                        veridicità delle stesse;</li>
+					<li>che i buoni spesa alimentari digitali potranno essere spesi nei negozi aderenti del territorio 
+						per l’acquisto esclusivo di generi di prima necessità secondo le normative vigenti;</li>
+					<li>che utilizzerà personalmente i buoni spesa digitali, pena la revoca del beneficio;</li>
+                </ul>
+
+                <h3>Chiede</h3>
+                <p>
+					di essere ammesso all’erogazione di buoni spesa alimentari digitali, il cui importo spettante sarà caricato sulla propria tessera sanitaria/carta d’identità elettronica;
+                </p>
+
+                <h3>Dichiara</h3>
+                <ul>
+                    <!-- <li>
+                        di aver subìto un grave deterioramento della propria condizione economico-finanziaria
+                        determinatasi per effetto delle conseguenze dell’emergenza epidemiologica da Covid-19, disagio
+                        socio-economico che comporta difficoltà nel pagamento delle seguenti spese:
+                        <span [ngSwitch]="principalRequirementFormGroup.controls.reason.value">
+                            <b *ngSwitchCase="'A'">Pagamento dell’utenza domestica (bolletta acqua, luce o gas)</b>
+                            <b *ngSwitchCase="'B'">Pagamento del canone di locazione</b>
+                            <b *ngSwitchCase="'C'">Pagamento delle spese mediche/farmaceutiche</b>
+                            <b *ngSwitchCase="'D'">Acquisto di generi di prima necessità</b>
+                        </span>;
+                    </li> -->
+                    <li>
+                        di possedere al 01/01/2021 un saldo disponibile di conto corrente bancario/postale e/o un saldo
+                        derivante da libretti di risparmio bancari/postali, complessivamente per l'intero nucleo
+                        familiare
+                        non superiore a € 6.000,00 e precisamente:
+                        <span *ngIf="principalRequirementFormGroup.controls.accountBalance.value == 'A'">minore di
+                            &euro; 3.000,00;</span>
+                        <span *ngIf="principalRequirementFormGroup.controls.accountBalance.value == 'B'">da &euro;
+                            3.000,01 a &euro;6.000,00;</span>
+                    </li>
+                    <li>
+                        che pertanto il proprio nucleo familiare, come si evince dallo STATO DI FAMIGLIA è composto da:
+                        {{ anagraficFormGroup.controls.adult.value }} adulti
+                        <span *ngIf="(anagraficFormGroup.controls.children.value != '')">
+                            e {{ anagraficFormGroup.controls.children.value }} minori (0-18 anni)
+                        </span>
+                        complessivi presenti nel nucleo familiare;
+                    </li>
+                    <li>
+                        che la suddetta istanza è l’unica presentata dal proprio nucleo familiare;
+                    </li>
+                    <li [ngSwitch]="economicSituationFormGroup.controls.economicalSituation.value">
+                        <span *ngSwitchCase="'A'">
+                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Settembre 2021, non
+                            beneficiare di
+                            alcuna
+                            misura di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito;
+                        </span>
+                        <span *ngSwitchCase="'B'">
+                            <u>FASCIA B</u> - disporre per il proprio nucleo familiare di un reddito netto complessivo
+                            non superiore ad € 1000,00 mensili e precisamente pari a:
+                            <b>{{ fiscalDataValueFormGroup.controls.octoberIncome.value | currency: "EUR" }}</b>
+                        </span>
+                    </li>
+                    <li>
+                        di autorizzare il trattamento dei dati personali ai sensi dell’art. 13 del Decreto Legislativo
+                        30 Giugno 2003, n. 196 “Codice in materia di protezione dei dati personali” e dell’art. 13 del
+                        GDPR (Regolamento UE 679/2016).
+                    </li>
+
+                </ul>
+            </div>
+
+
+            <br><br><br>
+
+
+            <div fxLayout="row" fxLayoutAlign="end top">
+                <h3>Prima di confermare rileggi quanto dichiarato!</h3>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end top">
+                <button mat-button matStepperPrevious>Indietro</button>
+                <button mat-button mat-raised-button color="accent" (click)="confirmation()">Conferma ed
+                    invia</button>
+            </div>
+        </mat-step>
+
+
+    </mat-horizontal-stepper>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="inTrasmission" id="trasmission">
+    <div [ngSwitch]="trasmissionStatus">
+        <div *ngSwitchCase="0">
+            <br><br><br><br>
+            <mat-spinner style="margin: 0 auto;"></mat-spinner>
+            <h3>INVIO DOMANDA ...</h3>
+            <br>
+            <br>
+        </div>
+        <div *ngSwitchCase="1">
+            <h3>Domanda inviata con successo!</h3>
+            <h2>Codice pratica <span style="color: red;">{{ confirmationId }}</span></h2>
+            <h2>Conserva questo codice! Ti servirà per conoscere l'esito della tua pratica.</h2>
+        </div>
+        <div *ngSwitchDefault>
+            <h3 style="color: red;">Errore nell'invio della domanda!</h3>
+            <h4>Ci scusiamo per il disagio, clicca su tasto "Riprova" per provare a trasmettere nuovamente l'istanza, se
+                il problema
+                persiste contatta l'help desk del Comune tramite la chat della pagina Facebook.</h4>
+            <button mat-button (click)="inTrasmission = false">Torna alla domanda</button>
+            <button mat-button mat-raised-button color="accent" (click)="confirmation()">Riprova</button>
+            <br>
+            <button mat-button (click)="showTrasmissionError = true">errore</button>
+            <pre style="text-align: left;"
+                *ngIf="showTrasmissionError"><code>Error:{{ trasmissionError | json }}</code></pre>
+        </div>
+    </div>
+</div>
