@@ -133,7 +133,7 @@ export class Form2Component implements OnInit {
                 this.fiscalFormIsCompleted = true;
                 break;
             case 'B': case 'D':
-                if (this.fiscalDataValueFormGroup.controls.octoberIncome.invalid || this.fiscalDataValueFormGroup.controls.incomeReason.invalid) {
+                if (this.fiscalDataValueFormGroup.controls.octoberIncome.invalid) {
                     break;
                 }
                 this.fiscalFormIsCompleted = true;

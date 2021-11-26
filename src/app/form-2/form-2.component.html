@@ -35,26 +35,26 @@
                 <h1>DISPONIBILITA' BANCARIA/POSTALE INTERO NUCLEO FAMILIARE</h1>
 
                 <div>
-                    <h3>Indicare il saldo disponibile al 31/12/2020 di conto corrente bancario/postale e/o un saldo
+                    <h3>Indicare il saldo disponibile al 30/09/2021 di conto corrente bancario/postale e/o un saldo
                         derivante
                         da libretti di risparmio bancari/postali, complessivamente per l'intero nucleo familiare non
-                        superiore ad € 5.000,00 e precisamente:
+                        superiore ad € 6.000,00 e precisamente:
                     </h3>
 
                     <mat-radio-group aria-label="Select an option" formControlName="accountBalance" required>
                         <mat-radio-button class="principalRequirementRadio" (change)="checkPrincipalRequirement($event)"
                             value="A">
-                            <span class="fasce">Fino ad &euro; 2.000,00</span>
+                            <span class="fasce">Fino ad &euro; 3.000,00</span>
                         </mat-radio-button>
                         <br><br>
                         <mat-radio-button class="principalRequirementRadio" (change)="checkPrincipalRequirement($event)"
                             value="B">
-                            <span class="fasce">Da &euro; 2.000,01 a &euro;5.000,00</span>
+                            <span class="fasce">Da &euro; 3.000,01 a &euro;6.000,00</span>
                         </mat-radio-button>
                         <br><br>
                         <mat-radio-button class="principalRequirementRadio" (change)="checkPrincipalRequirement($event)"
                             value="C">
-                            <span class="fasce">Superiore a &euro; 5.000,01</span>
+                            <span class="fasce">Superiore a &euro; 6.000,01</span>
                         </mat-radio-button>
                     </mat-radio-group>
                     <br><br>
@@ -230,20 +230,16 @@
 
                     <mat-radio-group aria-label="Select an option" formControlName="rentOrMutal">
                         <mat-radio-button class="residenceRadio" value="A">
-                            <span class="fasce">Di proprietà</span>
+                            <span class="fasce">Di proprietà/ In comodato d'uso gratuito </span>
                         </mat-radio-button>
                         <br><br>
-                        <mat-radio-button class="residenceRadio" value="B">
-                            <span class="fasce">In comodato d'uso gratuito</span>
-                        </mat-radio-button>
-                        <br><br>
+                        
                         <mat-radio-button class="residenceRadio" value="C">
-                            <span class="fasce">Con contratto di locazione</span>
+                            <span class="fasce">Con contratto di locazione/ Di proprietà con contratto di mutuo</span>
                         </mat-radio-button>
                         <br><br>
-                        <mat-radio-button class="residenceRadio" value="D">
-                            <span class="fasce">Di proprietà con contratto di mutuo</span>
-                        </mat-radio-button>
+						<mat-error>Il campo è obbligatorio!</mat-error>
+                       
                     </mat-radio-group>
                 </div>
 
@@ -282,16 +278,16 @@
                     <mat-radio-group formControlName="economicalSituation">
                         <mat-radio-button value="A">A</mat-radio-button>
                         <p [ngClass]="{'big-p': (economicSituationFormGroup.controls.economicalSituation.value=='A')}">
-                            A. essere disoccupato/inoccupato a far data dal 1 Gennaio 2021, non beneficiare di alcuna
+                            A. essere disoccupato/inoccupato a far data dal 1 Settembre 2021, non beneficiare di alcuna
                             misura
                             di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito (dal 1
-                            gennaio 2021 ad oggi);</p>
+                            settembre 2021 ad oggi);</p>
                         <br>
 
                         <mat-radio-button value="B">B</mat-radio-button>
                         <p [ngClass]="{'big-p': (economicSituationFormGroup.controls.economicalSituation.value=='B')}">
                             B. disporre per il proprio nucleo familiare di un reddito netto complessivo non superiore ad
-                            € 900,00 mensili (mese di riferimento reddito Gennaio 2021);</p>
+                            € 1000,00 mensili (mese di riferimento reddito SETTEMBRE 2021);</p>
                         <br>
 
                     </mat-radio-group>
@@ -324,7 +320,7 @@
             <form [formGroup]="fiscalDataValueFormGroup">
                 <div [ngSwitch]="economicSituationFormGroup.controls.economicalSituation.value">
                     <div *ngSwitchCase="'A'">
-                        <h3>Confermi che il reddito netto complessivo del nucleo familiare per il mese di Gennaio 2021 è
+                        <h3>Confermi che il reddito netto complessivo del nucleo familiare per il mese di Settembre 2021 è
                             pari a ZERO?</h3>
                         <br>
                         <mat-radio-group aria-label="Select an option" formControlName="incomeConfirmationControl"
@@ -333,7 +329,7 @@
                         </mat-radio-group>
                     </div>
                     <div *ngSwitchCase="'B'">
-                        <div>
+                        <!--<div>
                             <h4>Fonte del reddito</h4>
                             <mat-radio-group aria-label="Select an option" formControlName="incomeReason" required>
                                 <mat-radio-button class="principalRequirementRadio" value="LAVORO DIPENDENTE">
@@ -369,8 +365,9 @@
                                 </mat-radio-button>
                             </mat-radio-group>
                         </div>
+					-->
                         <div>
-                            <h3>Redditi netti complessivi del nucleo familiare nel mese di Gennaio 2021:</h3>
+                            <h3>Redditi netti complessivi del nucleo familiare nel mese di Settembre 2021:</h3>
                             <mat-form-field appearance="outline">
                                 <mat-label>Inserire sole cifre</mat-label>
                                 <input matInput type="number" formControlName="octoberIncome" required>
@@ -427,9 +424,8 @@
                     <br>Comune di Santa Maria La Carità
                 </p>
 
-                <p id="oggetto"><b>Oggetto:</b> MISURA DI SOLIDARIETA’ ALIMENTARE in attuazione del D. L. n. 154 del
-                    23/11/2020, recante “Misure finanziarie urgenti connesse all’emergenza epidemiologica da Covid-19,
-                    c.d. “ Decreto Ristori ter” – Emergenza epidemiologica da Covid-19 -</p>
+                <p id="oggetto"><b>Oggetto:</b>FONDO DI SOLIDARIETA’ in attuazione del D. L. n. 73 del 25/05/2021, art. 53.
+					Agevolazioni straordinarie: generi alimentari di prima necessità, buoni spesa digitali </p>
                 <p>
                     Il/La sottoscritto/a {{ anagraficFormGroup.controls.lastname.value }}
                     {{ anagraficFormGroup.controls.firstname.value }}
@@ -439,7 +435,7 @@
                     cell {{ anagraficFormGroup.controls.mobile.value }}
                     <span *ngIf="(anagraficFormGroup.controls.email.value != '')">email
                         {{ anagraficFormGroup.controls.email.value }}</span>
-                    in riferimento all’AVVISO PUBBLICO “Misura di Solidarietà alimentare in attuazione del D.L. 154/2020”,
+						In riferimento all’AVVISO PUBBLICO “FONDO DI SOLIDARIETA’ in attuazione del D.L. n. 73 del 25/05/2021, art. 53;,
                 </p>
 
 
@@ -454,11 +450,14 @@
                     <li>che tutte le informazioni fornite saranno trasmesse dal Comune di Santa Maria la Carità alle
                         Autorità competenti (Guardia di Finanza, Agenzia delle Entrate) per i controlli di rito sulla
                         veridicità delle stesse;</li>
+					<li>che i buoni spesa alimentari digitali potranno essere spesi nei negozi aderenti del territorio 
+						per l’acquisto esclusivo di generi di prima necessità secondo le normative vigenti;</li>
+					<li>che utilizzerà personalmente i buoni spesa digitali, pena la revoca del beneficio;</li>
                 </ul>
 
                 <h3>Chiede</h3>
                 <p>
-                    di essere ammesso all’erogazione dell’ausilio finanziario a carattere straordinario;
+					di essere ammesso all’erogazione di buoni spesa alimentari digitali, il cui importo spettante sarà caricato sulla propria tessera sanitaria/carta d’identità elettronica;
                 </p>
 
                 <h3>Dichiara</h3>
@@ -478,11 +477,11 @@
                         di possedere al 01/01/2021 un saldo disponibile di conto corrente bancario/postale e/o un saldo
                         derivante da libretti di risparmio bancari/postali, complessivamente per l'intero nucleo
                         familiare
-                        non superiore a € 5.000,00 e precisamente:
+                        non superiore a € 6.000,00 e precisamente:
                         <span *ngIf="principalRequirementFormGroup.controls.accountBalance.value == 'A'">minore di
-                            &euro; 2.000,00;</span>
+                            &euro; 3.000,00;</span>
                         <span *ngIf="principalRequirementFormGroup.controls.accountBalance.value == 'B'">da &euro;
-                            2.000,01 a &euro;5.000,00;</span>
+                            3.000,01 a &euro;6.000,00;</span>
                     </li>
                     <li>
                         che pertanto il proprio nucleo familiare, come si evince dallo STATO DI FAMIGLIA è composto da:
@@ -497,16 +496,15 @@
                     </li>
                     <li [ngSwitch]="economicSituationFormGroup.controls.economicalSituation.value">
                         <span *ngSwitchCase="'A'">
-                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Gennaio 2021, non
+                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Settembre 2021, non
                             beneficiare di
                             alcuna
                             misura di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito;
                         </span>
                         <span *ngSwitchCase="'B'">
                             <u>FASCIA B</u> - disporre per il proprio nucleo familiare di un reddito netto complessivo
-                            non superiore ad € 900,00 mensili e precisamente pari a:
+                            non superiore ad € 1000,00 mensili e precisamente pari a:
                             <b>{{ fiscalDataValueFormGroup.controls.octoberIncome.value | currency: "EUR" }}</b>
-                            derivante da: {{ fiscalDataValueFormGroup.controls.incomeReason.value }};
                         </span>
                     </li>
                     <li>
