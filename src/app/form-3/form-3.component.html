@@ -289,9 +289,12 @@
 				<div>
 					<h3>Registrato all'Agenzia delle Entrate:</h3>
 
-					<mat-form-field appearance="outline" >
-						<mat-label>Riferimento</mat-label>
-						<input matInput formControlName="ref" required>
+					<mat-form-field appearance="outline">
+						<mat-label>Data Registrazione Agenzia delle entrate</mat-label>
+						<input formControlName="ref" matInput [matDatepicker]="picker1" required>
+						<mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+						<mat-datepicker #picker1></mat-datepicker>
+						  
 					</mat-form-field>
 					
 					<mat-form-field appearance="outline" >
@@ -348,8 +351,8 @@
                     <br>Comune di Santa Maria La Carità
                 </p>
 
-                <p id="oggetto"><b>Oggetto:</b>FONDO DI SOLIDARIETA’ in attuazione del D. L. n. 73 del 25/05/2021, art. 53.
-					Agevolazioni straordinarie: generi alimentari di prima necessità, buoni spesa digitali </p>
+                <p id="oggetto"><b>Oggetto:</b>FONDO DI SOLIDARIETA’ in attuazione del D. L. n. 73 del 25/05/2021, art. 53.          
+					Agevolazioni straordinarie: sostegno ai canoni di locazione per le abitazioni principali </p>
                 <p>
                     Il/La sottoscritto/a {{ anagraficFormGroup.controls.lastname.value }}
                     {{ anagraficFormGroup.controls.firstname.value }}
@@ -374,56 +377,51 @@
                     <li>che tutte le informazioni fornite saranno trasmesse dal Comune di Santa Maria la Carità alle
                         Autorità competenti (Guardia di Finanza, Agenzia delle Entrate) per i controlli di rito sulla
                         veridicità delle stesse;</li>
-					<li>che i buoni spesa alimentari digitali potranno essere spesi nei negozi aderenti del territorio 
+					<!--<li>che i buoni spesa alimentari digitali potranno essere spesi nei negozi aderenti del territorio 
 						per l’acquisto esclusivo di generi di prima necessità secondo le normative vigenti;</li>
-					<li>che utilizzerà personalmente i buoni spesa digitali, pena la revoca del beneficio;</li>
+					<li>che utilizzerà personalmente i buoni spesa digitali, pena la revoca del beneficio;</li>-->
                 </ul>
 
                 <h3>Chiede</h3>
-                <p>
-					di essere ammesso all’erogazione di buoni spesa alimentari digitali, il cui importo spettante sarà caricato sulla propria tessera sanitaria/carta d’identità elettronica;
-                </p>
+                <ul>
+					<li>di essere ammesso all’erogazione del contributo per il sostegno ai canoni di locazione per le abitazioni principali;</li>
+					<li>che il contributo venga accreditato sull'IBAN: {{ principalRequirementFormGroup.controls.accountBalance.value }}</li>
+				</ul>
 
                 <h3>Dichiara</h3>
                 <ul>
-                    <!-- <li>
-                        di aver subìto un grave deterioramento della propria condizione economico-finanziaria
-                        determinatasi per effetto delle conseguenze dell’emergenza epidemiologica da Covid-19, disagio
-                        socio-economico che comporta difficoltà nel pagamento delle seguenti spese:
-                        <span [ngSwitch]="principalRequirementFormGroup.controls.reason.value">
-                            <b *ngSwitchCase="'A'">Pagamento dell’utenza domestica (bolletta acqua, luce o gas)</b>
-                            <b *ngSwitchCase="'B'">Pagamento del canone di locazione</b>
-                            <b *ngSwitchCase="'C'">Pagamento delle spese mediche/farmaceutiche</b>
-                            <b *ngSwitchCase="'D'">Acquisto di generi di prima necessità</b>
-                        </span>;
-                    </li> -->
                     <li>
-                        di possedere al 01/01/2021 un saldo disponibile di conto corrente bancario/postale e/o un saldo
-                        derivante da libretti di risparmio bancari/postali, complessivamente per l'intero nucleo
-                        familiare
-                        non superiore a € 6.000,00 e precisamente:
-                        <span *ngIf="principalRequirementFormGroup.controls.accountBalance.value == 'A'">minore di
-                            &euro; 3.000,00;</span>
-                        <span *ngIf="principalRequirementFormGroup.controls.accountBalance.value == 'B'">da &euro;
-                            3.000,01 a &euro;6.000,00;</span>
+						Di avere la residenza anagrafica nel Comune e nell’immobile per il quale è richiesto il contributo;
                     </li>
                     <li>
-                        che pertanto il proprio nucleo familiare, come si evince dallo STATO DI FAMIGLIA è composto da:
-                        {{ anagraficFormGroup.controls.adult.value }} adulti
-                        <span *ngIf="(anagraficFormGroup.controls.children.value != '')">
-                            e {{ anagraficFormGroup.controls.children.value }} minori (0-18 anni)
-                        </span>
-                        complessivi presenti nel nucleo familiare;
+                        Di possedere un valore ISE pari ad {{ economicSituationFormGroup.controls.iban.value }} €
                     </li>
                     <li>
                         che la suddetta istanza è l’unica presentata dal proprio nucleo familiare;
                     </li>
                 
                     <li>
+                        di essere titolare, per l’anno 2020, di un contratto di locazione ad uso abitativo, 
+						regolarmente registrato, relativo ad un immobile non di edilizia residenziale pubblica;
+                    </li>
+
+                    <li>
+						di essere consapevole che il contributo previsto dall'art. 11 della L. n. 431/98 
+						non può essere cumulato con contributi erogati da altri Enti per la stessa finalità;
+					</li>
+
+					<li>
+						che è stato stipulato in data {{economicSituationFormGroup.controls.rentDate.value}} regolare contratto di fitto ad uso abitativo, 
+						per un importo mensile {{economicSituationFormGroup.controls.amountRent.value}} registrato presso l’Agenzia delle Entrate 
+						in data{{economicSituationFormGroup.controls.ref.value}} al numero {{economicSituationFormGroup.controls.numberRef.value}}
+					</li>
+
+					<li>
                         di autorizzare il trattamento dei dati personali ai sensi dell’art. 13 del Decreto Legislativo
                         30 Giugno 2003, n. 196 “Codice in materia di protezione dei dati personali” e dell’art. 13 del
                         GDPR (Regolamento UE 679/2016).
                     </li>
+                    
 
                 </ul>
             </div>

@@ -81,7 +81,7 @@ export class Form3Component implements OnInit {
 
     checkFiscalDataValue(stepper): void {
 
-		/*let rent: any ={
+		let rent: any ={
 			amountRent : this.economicSituationFormGroup.controls.amountRent.value,
 			rentDate : this.economicSituationFormGroup.controls.rentDate.value,
 			ref : this.economicSituationFormGroup.controls.ref.value,
@@ -92,28 +92,7 @@ export class Form3Component implements OnInit {
 
         this.fiscalFormIsCompleted = false;
 
-        /* switch (economicalSituation) {
-           
-            case 'B': case 'D':
-                if (this.fiscalDataValueFormGroup.controls.octoberIncome.invalid) {
-                    break;
-                }
-                this.fiscalFormIsCompleted = true;
-                break;
-            case 'C': case 'E':
-                if (this.fiscalDataValueFormGroup.controls.octoberIncome.invalid) {
-                    break;
-                }
-                this.fiscalFormIsCompleted = true;
-                break;
-            case 'F':
-                if (this.fiscalDataValueFormGroup.controls.prevYearIncome.invalid || this.fiscalDataValueFormGroup.controls.octoberIncome.invalid) {
-                    break;
-                }
-                this.fiscalFormIsCompleted = true;
-                break;
-        }
-		*/
+        
 
         setTimeout(() => stepper.next(), 1);
     }
