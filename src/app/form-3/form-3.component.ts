@@ -24,6 +24,8 @@ export class Form3Component implements OnInit {
     economicSituationFormGroup: FormGroup;
     fiscalDataValueFormGroup: FormGroup;
 
+	
+	
     confirmationId;
 
     constructor(
@@ -56,7 +58,12 @@ export class Form3Component implements OnInit {
         });
 
         this.economicSituationFormGroup = this._formBuilder.group({
-            economicalSituation: ['', Validators.required],
+			amountRent: ['',Validators.required ],
+			rentDate: ['', Validators.required ],
+			ref: ['',Validators.required ],
+			numberRef: ['',Validators.required ],
+			iban: ['',Validators.required ],
+
         });
 
         this.fiscalDataValueFormGroup = this._formBuilder.group({
@@ -73,10 +80,19 @@ export class Form3Component implements OnInit {
 
 
     checkFiscalDataValue(stepper): void {
-        let economicalSituation = this.economicSituationFormGroup.controls.economicalSituation.value;
+
+		/*let rent: any ={
+			amountRent : this.economicSituationFormGroup.controls.amountRent.value,
+			rentDate : this.economicSituationFormGroup.controls.rentDate.value,
+			ref : this.economicSituationFormGroup.controls.ref.value,
+			numberRef : this.economicSituationFormGroup.controls.numberRef.value,
+			iban : this.economicSituationFormGroup.controls.iban.value,
+		}
+		
+
         this.fiscalFormIsCompleted = false;
 
-        switch (economicalSituation) {
+        /* switch (economicalSituation) {
            
             case 'B': case 'D':
                 if (this.fiscalDataValueFormGroup.controls.octoberIncome.invalid) {
@@ -97,6 +113,7 @@ export class Form3Component implements OnInit {
                 this.fiscalFormIsCompleted = true;
                 break;
         }
+		*/
 
         setTimeout(() => stepper.next(), 1);
     }
@@ -120,14 +137,13 @@ export class Form3Component implements OnInit {
             },
             address: this.residenceFormGroup.controls.address.value,
             address2: this.residenceFormGroup.controls.address2.value,
-            requestStatusA: (this.residenceFormGroup.controls.rentOrMutal.value == 'A') ? true : false, //fitto o mutuo
-            requestStatusB: (this.residenceFormGroup.controls.rentOrMutal.value == 'B') ? true : false, //fitto o mutuo
+        
             
             cap: this.principalRequirementFormGroup.controls.reason.value, //fascia
             
-            requestStatusBIncomeMar: this.fiscalDataValueFormGroup.controls.octoberIncome.value,//reddito ottobre
+          
             city: this.fiscalDataValueFormGroup.controls.incomeReason.value,//motivo reddito
-            requestStatusBIncomeFeb: this.fiscalDataValueFormGroup.controls.prevYearIncome.value//reddito anno prec
+            
         }
         
         try {

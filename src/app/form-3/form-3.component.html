@@ -208,6 +208,59 @@
 
 
 
+		<mat-step [stepControl]="residenceFormGroup">
+            <ng-template matStepLabel>Dichiarazione</ng-template>
+
+                <h2>Il/La sottoscritta dichiara </h2>
+                <div>
+                    <ul>
+						<li>di avere, unitamente ai proprio nucleo familiare, i requisiti previsti dall'art. 2 lett, a, b, c, d, e, f della Legge Regione Campania del 2 luglio 1997, n. 18 per 
+							l'accesso all'Edilizia Residenziale Pubblica (in caso di trasferimento in altro Comune, il requisito della residenza va posseduto con riferimento alla data di pubblicazione del presente bando)</li>
+						<li>essere titolare, per l’anno 2020, di un contratto di locazione ad uso abitativo, regolarmente registrato, relativo ad un immobile non di edilizia residenziale pubblica;</li>
+						<li>di essere consapevole che il contributo previsto dall'art. 11 della L. n. 431/98 non può essere cumulato con contributi erogati da altri Enti per la stessa finalità;</li>
+						<li>di presentare certificazione dalla quale risultino valore ISEE (Indicatore della Situazione Economica Equivalente), valore ISE (Indicatore della Situazione Economica) e incidenza del canone annuo, al netto degli 
+							oneri accessori, sul valore ISE, calcolati ai sensi del D.Lgs. n. 109/98 e successive modificazioni ed integrazioni, rientranti entro i valori di seguito indicati:</li>
+					</ul>
+                </div>
+
+
+                <div fxLayout="row" fxLayoutAlign="end top">
+                    <button mat-button matStepperPrevious>Indietro</button>
+                    <button mat-button matStepperNext mat-raised-button color="primary">Avanti</button>
+                </div>
+            
+        </mat-step>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <mat-step [stepControl]="economicSituationFormGroup">
             <ng-template matStepLabel>Dati Contratto</ng-template>
@@ -217,20 +270,16 @@
                 <div>
                     <mat-form-field appearance="outline">
 						<mat-label>Data stipula contratto</mat-label>
-						<input matInput [matDatepicker]="datepicker">
-						<mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-						<mat-datepicker #datepicker>
+						<input formControlName="rentDate" matInput [matDatepicker]="picker" required>
+						<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+						<mat-datepicker #picker></mat-datepicker>
 						  
-							<button mat-button matDatepickerCancel>Annulla</button>
-							<button mat-raised-button color="primary" matDatepickerApply>Conferma</button>
-						
-						</mat-datepicker>
 					</mat-form-field>
 
 					
 					<mat-form-field appearance="outline">
                         <mat-label>Importo mensile registrato </mat-label>
-                        <input matInput formControlName="mobile" type="number" required>
+                        <input matInput formControlName="amountRent" type="number" required>
                         <mat-icon matSuffix class="secondary-text">euro</mat-icon>
                         <mat-error>L'importo è obbligatorio!</mat-error>
                     </mat-form-field>
@@ -242,12 +291,12 @@
 
 					<mat-form-field appearance="outline" >
 						<mat-label>Riferimento</mat-label>
-						<input matInput>
+						<input matInput formControlName="ref" required>
 					</mat-form-field>
 					
 					<mat-form-field appearance="outline" >
 						<mat-label>Numero</mat-label>
-						<input matInput type="number">
+						<input matInput type="number" formControlName="numberRef"  required>
 					</mat-form-field>
 				</div>
 				
@@ -256,94 +305,11 @@
 					<h3>Iban conto corrente postale o bancario per l'accredito dell'eventuale contributo </h3>
 					<mat-form-field appearance="outline" >
 						<mat-label>Iban</mat-label>
-						<input matInput>
+						<input matInput  formControlName="iban" required>
 					</mat-form-field>
 				</div>
-                <div fxLayout="row" fxLayoutAlign="end top">
-                    <button mat-button matStepperPrevious>Indietro</button>
-                    <button mat-button matStepperNext mat-raised-button color="primary">Avanti</button>
-                </div>
-            </form>
-        </mat-step>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <mat-step [completed]="fiscalFormIsCompleted">
-            <ng-template matStepLabel>Dati Reddito e Contratto</ng-template>
-
-
-            <form [formGroup]="fiscalDataValueFormGroup">
-                <div>
-                    <div>
-                        <!--<div>
-                            <h4>Fonte del reddito</h4>
-                            <mat-radio-group aria-label="Select an option" formControlName="incomeReason" required>
-                                <mat-radio-button class="principalRequirementRadio" value="LAVORO DIPENDENTE">
-                                    <span class="fasce">LAVORO DIPENDENTE</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="PENSIONE">
-                                    <span class="fasce">PENSIONE</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="REDDITO DI CITTADINANZA">
-                                    <span class="fasce">REDDITO DI CITTADINANZA</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="REDDITO DI EMERGENZA">
-                                    <span class="fasce">REDDITO DI EMERGENZA</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="REDDITO DI INCLUSIONE">
-                                    <span class="fasce">REDDITO DI INCLUSIONE</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="NASPI, MINI NASPI, ASDI">
-                                    <span class="fasce">NASPI, MINI NASPI, ASDI</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="CASSA INTEGRAZIONE">
-                                    <span class="fasce">CASSA INTEGRAZIONE</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="ALTRO">
-                                    <span class="fasce">ALTRO</span>
-                                </mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-					-->
-                        <div>
-                            <h3>(ATTENZIONE inserire ISE non il valore ISEE):</h3>
-                            <mat-form-field appearance="outline">
-                                <mat-label>Inserire sole cifre</mat-label>
-                                <input matInput type="number" formControlName="octoberIncome" required>
-                                <span matPrefix>€&nbsp;&nbsp;</span>
-                                <span matSuffix>.00</span>
-                                <mat-error>Compilare il campo!</mat-error>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div >
-                        Problema nell'inserimento della condizione economica.
-                    </div>
-                    <br><br>
-                    <h3>Il dato inserito sarà trasmesso e verificato dagli Enti preposti (Agenzia delle Entrate e
-                        Guardia di Finanza).</h3>
-                </div>
-                <div fxLayout="row" fxLayoutAlign="end top">
+               
+				<div fxLayout="row" fxLayoutAlign="end top">
                     <button mat-button matStepperPrevious>Indietro</button>
                     <button mat-button mat-raised-button color="primary"
                         (click)="checkFiscalDataValue(stepper)">Verifica
@@ -351,6 +317,8 @@
                 </div>
             </form>
         </mat-step>
+
+
 
 
 
@@ -450,19 +418,7 @@
                     <li>
                         che la suddetta istanza è l’unica presentata dal proprio nucleo familiare;
                     </li>
-                    <li [ngSwitch]="economicSituationFormGroup.controls.economicalSituation.value">
-                        <span *ngSwitchCase="'A'">
-                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Settembre 2021, non
-                            beneficiare di
-                            alcuna
-                            misura di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito;
-                        </span>
-                        <span *ngSwitchCase="'B'">
-                            <u>FASCIA B</u> - disporre per il proprio nucleo familiare di un reddito netto complessivo
-                            non superiore ad € 1000,00 mensili e precisamente pari a:
-                            <b>{{ fiscalDataValueFormGroup.controls.octoberIncome.value | currency: "EUR" }}</b>
-                        </span>
-                    </li>
+                
                     <li>
                         di autorizzare il trattamento dei dati personali ai sensi dell’art. 13 del Decreto Legislativo
                         30 Giugno 2003, n. 196 “Codice in materia di protezione dei dati personali” e dell’art. 13 del
@@ -489,8 +445,6 @@
 
     </mat-horizontal-stepper>
 </div>
-
-
 
 
 
@@ -533,3 +487,10 @@
         </div>
     </div>
 </div>
+
+principalRequirementFormGroup
+<pre>{{ principalRequirementFormGroup.value | json }}</pre>
+anagraficFormGroup
+<pre>{{ anagraficFormGroup.value | json }}</pre>
+<pre>{{ economicSituationFormGroup.value | json }}</pre>
+<pre>{{ economicSituationFormGroup.value | json }}</pre>
