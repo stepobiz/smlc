@@ -21,6 +21,7 @@ import { Form2Component } from './form-2/form-2.component';
 import { MatNativeDateModule, MatStepperModule } from '@angular/material';
 import { Form3Component } from './form-3/form-3.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { AigGenericClientModule, AIG_GENERIC_PATH } from 'aig-generic';
 
 @NgModule({
   declarations: [
@@ -33,8 +34,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     BrowserModule,
     NoopAnimationsModule,
 
-    AigSolidaretyApiModule,
     HttpClientModule,
+    AigSolidaretyApiModule,
+	AigGenericClientModule,
 
     FormsModule,
     ReactiveFormsModule,
@@ -60,10 +62,10 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
       useClass: TokenContextInterceptor,
       multi: true
     },
-    {
-      provide: AIG_SOLIDARETY_BASE_PATH,
-      useValue: "https://api-gest.eneasys.net/" + "solidarety"
-    },
+	{
+		provide: AIG_GENERIC_PATH,
+		useValue: "https://api-gest.eneasys.net/" + "g5c"
+	  },
   ],
   bootstrap: [AppComponent]
 })
