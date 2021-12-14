@@ -53,7 +53,7 @@
                         </mat-radio-button>
                         <br><br>
                         <mat-radio-button class="principalRequirementRadio" (change)="checkPrincipalRequirement($event)"
-                            value="C">
+                            value="">
                             <span class="fasce">Superiore a &euro; 6.000,01</span>
                         </mat-radio-button>
                     </mat-radio-group>
@@ -65,34 +65,6 @@
                         Guardia di Finanza).</h3>
                 </div>
                 <hr>
-                <!-- <div>
-                    <h3>Indicare il motivo per cui si richiede il contributo economico straordinario</h3>
-
-                    <mat-radio-group aria-label="Select an option" formControlName="reason" required>
-                        <mat-radio-button class="principalRequirementRadio" value="A">
-                            <span class="fasce">Pagamento dell’utenza domestica (bolletta acqua, luce o gas)</span>
-                        </mat-radio-button>
-                        <br><br>
-                        <mat-radio-button class="principalRequirementRadio" value="B">
-                            <span class="fasce">Pagamento del canone di locazione</span>
-                        </mat-radio-button>
-                        <br><br>
-                        <mat-radio-button class="principalRequirementRadio" value="C">
-                            <span class="fasce">Pagamento delle spese mediche/farmaceutiche</span>
-                        </mat-radio-button>
-                        <br><br>
-                        <mat-radio-button class="principalRequirementRadio" value="D">
-                            <span class="fasce">Acquisto di generi di prima necessità</span>
-                        </mat-radio-button>
-                    </mat-radio-group>
-                    <br><br>
-                    <div>
-                        <mat-error *ngIf="principalRequirementError2 != ''">{{ principalRequirementError2 }}</mat-error>
-                    </div>
-                    <h3>TALE DOCUMENTAZIONE DOVRA’ ESSERE PRESENTATA IN COPIA AL COMUNE INSIEME ALLA FOTOCOPIA DI VALIDO
-                        DOCUMENTO DI RICONOSCIMENTO</h3>
-                </div> -->
-
                 <div fxLayout="row" fxLayoutAlign="end top">
                     <button mat-button mat-raised-button color="primary"
                         (click)="checkAndGoPrincipalRequirement(stepper)">Verifica e vai avanti</button>
@@ -329,43 +301,6 @@
                         </mat-radio-group>
                     </div>
                     <div *ngSwitchCase="'B'">
-                        <!--<div>
-                            <h4>Fonte del reddito</h4>
-                            <mat-radio-group aria-label="Select an option" formControlName="incomeReason" required>
-                                <mat-radio-button class="principalRequirementRadio" value="LAVORO DIPENDENTE">
-                                    <span class="fasce">LAVORO DIPENDENTE</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="PENSIONE">
-                                    <span class="fasce">PENSIONE</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="REDDITO DI CITTADINANZA">
-                                    <span class="fasce">REDDITO DI CITTADINANZA</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="REDDITO DI EMERGENZA">
-                                    <span class="fasce">REDDITO DI EMERGENZA</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="REDDITO DI INCLUSIONE">
-                                    <span class="fasce">REDDITO DI INCLUSIONE</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="NASPI, MINI NASPI, ASDI">
-                                    <span class="fasce">NASPI, MINI NASPI, ASDI</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="CASSA INTEGRAZIONE">
-                                    <span class="fasce">CASSA INTEGRAZIONE</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="ALTRO">
-                                    <span class="fasce">ALTRO</span>
-                                </mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-					-->
                         <div>
                             <h3>Redditi netti complessivi del nucleo familiare nel mese di Settembre 2021:</h3>
                             <mat-form-field appearance="outline">
@@ -373,7 +308,7 @@
                                 <input matInput type="number" formControlName="octoberIncome" required>
                                 <span matPrefix>€&nbsp;&nbsp;</span>
                                 <span matSuffix>.00</span>
-                                <mat-error>Compilare il campo!</mat-error>
+                                <mat-error>Compilare il campo! L'importo deve essere inferiore a 1.001,00 €</mat-error>
                             </mat-form-field>
                         </div>
                     </div>
