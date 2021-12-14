@@ -56,7 +56,13 @@ export class Form3Component implements OnInit {
         });
 
         this.economicSituationFormGroup = this._formBuilder.group({
-            economicalSituation: ['', Validators.required],
+			economicalSituation: [''],
+			amountRent: ['', Validators.required],
+			iban: ['', Validators.required],
+			dateRent: [''],
+			registrationDate: [''],
+			referenceContract: [''],
+
         });
 
         this.fiscalDataValueFormGroup = this._formBuilder.group({

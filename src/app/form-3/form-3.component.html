@@ -217,9 +217,9 @@
                 <div>
                     <mat-form-field appearance="outline">
 						<mat-label>Data stipula contratto</mat-label>
-						<input matInput [matDatepicker]="datepicker">
-						<mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-						<mat-datepicker #datepicker>
+						<input matInput [matDatepicker]="dateRent">
+						<mat-datepicker-toggle matSuffix [for]="dateRent"></mat-datepicker-toggle>
+						<mat-datepicker #dateRent>
 						  
 							<button mat-button matDatepickerCancel>Annulla</button>
 							<button mat-raised-button color="primary" matDatepickerApply>Conferma</button>
@@ -230,7 +230,7 @@
 					
 					<mat-form-field appearance="outline">
                         <mat-label>Importo mensile registrato </mat-label>
-                        <input matInput formControlName="mobile" type="number" required>
+                        <input matInput formControlName="amountRent" type="number" required>
                         <mat-icon matSuffix class="secondary-text">euro</mat-icon>
                         <mat-error>L'importo è obbligatorio!</mat-error>
                     </mat-form-field>
@@ -240,14 +240,22 @@
 				<div>
 					<h3>Registrato all'Agenzia delle Entrate:</h3>
 
-					<mat-form-field appearance="outline" >
-						<mat-label>Riferimento</mat-label>
-						<input matInput>
+					<mat-form-field appearance="outline">
+						<mat-label>Data registrazione</mat-label>
+						<input matInput [matDatepicker]="registrationDate">
+						<mat-datepicker-toggle matSuffix [for]="registrationDate"></mat-datepicker-toggle>
+						<mat-datepicker #registrationDate>
+						  
+							<button mat-button matDatepickerCancel>Annulla</button>
+							<button mat-raised-button color="primary" matDatepickerApply>Conferma</button>
+						
+						</mat-datepicker>
 					</mat-form-field>
+
 					
 					<mat-form-field appearance="outline" >
 						<mat-label>Numero</mat-label>
-						<input matInput type="number">
+						<input matInput type="number" formControlName="referenceContract">
 					</mat-form-field>
 				</div>
 				
@@ -256,7 +264,7 @@
 					<h3>Iban conto corrente postale o bancario per l'accredito dell'eventuale contributo </h3>
 					<mat-form-field appearance="outline" >
 						<mat-label>Iban</mat-label>
-						<input matInput>
+						<input matInput formControlName="iban">
 					</mat-form-field>
 				</div>
                 <div fxLayout="row" fxLayoutAlign="end top">
@@ -268,89 +276,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <mat-step [completed]="fiscalFormIsCompleted">
-            <ng-template matStepLabel>Dati Reddito e Contratto</ng-template>
-
-
-            <form [formGroup]="fiscalDataValueFormGroup">
-                <div>
-                    <div>
-                        <!--<div>
-                            <h4>Fonte del reddito</h4>
-                            <mat-radio-group aria-label="Select an option" formControlName="incomeReason" required>
-                                <mat-radio-button class="principalRequirementRadio" value="LAVORO DIPENDENTE">
-                                    <span class="fasce">LAVORO DIPENDENTE</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="PENSIONE">
-                                    <span class="fasce">PENSIONE</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="REDDITO DI CITTADINANZA">
-                                    <span class="fasce">REDDITO DI CITTADINANZA</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="REDDITO DI EMERGENZA">
-                                    <span class="fasce">REDDITO DI EMERGENZA</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="REDDITO DI INCLUSIONE">
-                                    <span class="fasce">REDDITO DI INCLUSIONE</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="NASPI, MINI NASPI, ASDI">
-                                    <span class="fasce">NASPI, MINI NASPI, ASDI</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="CASSA INTEGRAZIONE">
-                                    <span class="fasce">CASSA INTEGRAZIONE</span>
-                                </mat-radio-button>
-                                <br><br>
-                                <mat-radio-button class="principalRequirementRadio" value="ALTRO">
-                                    <span class="fasce">ALTRO</span>
-                                </mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-					-->
-                        <div>
-                            <h3>(ATTENZIONE inserire ISE non il valore ISEE):</h3>
-                            <mat-form-field appearance="outline">
-                                <mat-label>Inserire sole cifre</mat-label>
-                                <input matInput type="number" formControlName="octoberIncome" required>
-                                <span matPrefix>€&nbsp;&nbsp;</span>
-                                <span matSuffix>.00</span>
-                                <mat-error>Compilare il campo!</mat-error>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div >
-                        Problema nell'inserimento della condizione economica.
-                    </div>
-                    <br><br>
-                    <h3>Il dato inserito sarà trasmesso e verificato dagli Enti preposti (Agenzia delle Entrate e
-                        Guardia di Finanza).</h3>
-                </div>
-                <div fxLayout="row" fxLayoutAlign="end top">
-                    <button mat-button matStepperPrevious>Indietro</button>
-                    <button mat-button mat-raised-button color="primary"
-                        (click)="checkFiscalDataValue(stepper)">Verifica
-                        e vai avanti</button>
-                </div>
-            </form>
-        </mat-step>
 
 
 
@@ -381,7 +306,7 @@
                 </p>
 
                 <p id="oggetto"><b>Oggetto:</b>FONDO DI SOLIDARIETA’ in attuazione del D. L. n. 73 del 25/05/2021, art. 53.
-					Agevolazioni straordinarie: generi alimentari di prima necessità, buoni spesa digitali </p>
+					Agevolazioni straordinarie: sostegno ai canoni di locazione per le abitazioni principali </p>
                 <p>
                     Il/La sottoscritto/a {{ anagraficFormGroup.controls.lastname.value }}
                     {{ anagraficFormGroup.controls.firstname.value }}
@@ -406,63 +331,37 @@
                     <li>che tutte le informazioni fornite saranno trasmesse dal Comune di Santa Maria la Carità alle
                         Autorità competenti (Guardia di Finanza, Agenzia delle Entrate) per i controlli di rito sulla
                         veridicità delle stesse;</li>
-					<li>che i buoni spesa alimentari digitali potranno essere spesi nei negozi aderenti del territorio 
-						per l’acquisto esclusivo di generi di prima necessità secondo le normative vigenti;</li>
-					<li>che utilizzerà personalmente i buoni spesa digitali, pena la revoca del beneficio;</li>
+					
                 </ul>
 
                 <h3>Chiede</h3>
                 <p>
-					di essere ammesso all’erogazione di buoni spesa alimentari digitali, il cui importo spettante sarà caricato sulla propria tessera sanitaria/carta d’identità elettronica;
+					di essere ammesso all’erogazione del contributo per il sostegno ai canoni di locazione per le abitazioni principali;
                 </p>
 
                 <h3>Dichiara</h3>
                 <ul>
-                    <!-- <li>
-                        di aver subìto un grave deterioramento della propria condizione economico-finanziaria
-                        determinatasi per effetto delle conseguenze dell’emergenza epidemiologica da Covid-19, disagio
-                        socio-economico che comporta difficoltà nel pagamento delle seguenti spese:
-                        <span [ngSwitch]="principalRequirementFormGroup.controls.reason.value">
-                            <b *ngSwitchCase="'A'">Pagamento dell’utenza domestica (bolletta acqua, luce o gas)</b>
-                            <b *ngSwitchCase="'B'">Pagamento del canone di locazione</b>
-                            <b *ngSwitchCase="'C'">Pagamento delle spese mediche/farmaceutiche</b>
-                            <b *ngSwitchCase="'D'">Acquisto di generi di prima necessità</b>
-                        </span>;
-                    </li> -->
+                    <li>di avere la residenza anagrafica nel Comune e nell'immobile per il quale è richiesto il contributo;</li>
                     <li>
-                        di possedere al 01/01/2021 un saldo disponibile di conto corrente bancario/postale e/o un saldo
-                        derivante da libretti di risparmio bancari/postali, complessivamente per l'intero nucleo
-                        familiare
-                        non superiore a € 6.000,00 e precisamente:
-                        <span *ngIf="principalRequirementFormGroup.controls.accountBalance.value == 'A'">minore di
-                            &euro; 3.000,00;</span>
-                        <span *ngIf="principalRequirementFormGroup.controls.accountBalance.value == 'B'">da &euro;
-                            3.000,01 a &euro;6.000,00;</span>
+                        di possedere un valore ISE pari ad {{principalRequirementFormGroup.controls.accountBalance.value}};
+                        
                     </li>
-                    <li>
-                        che pertanto il proprio nucleo familiare, come si evince dallo STATO DI FAMIGLIA è composto da:
-                        {{ anagraficFormGroup.controls.adult.value }} adulti
-                        <span *ngIf="(anagraficFormGroup.controls.children.value != '')">
-                            e {{ anagraficFormGroup.controls.children.value }} minori (0-18 anni)
-                        </span>
-                        complessivi presenti nel nucleo familiare;
-                    </li>
+                   
                     <li>
                         che la suddetta istanza è l’unica presentata dal proprio nucleo familiare;
                     </li>
-                    <li [ngSwitch]="economicSituationFormGroup.controls.economicalSituation.value">
-                        <span *ngSwitchCase="'A'">
-                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Settembre 2021, non
-                            beneficiare di
-                            alcuna
-                            misura di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito;
-                        </span>
-                        <span *ngSwitchCase="'B'">
-                            <u>FASCIA B</u> - disporre per il proprio nucleo familiare di un reddito netto complessivo
-                            non superiore ad € 1000,00 mensili e precisamente pari a:
-                            <b>{{ fiscalDataValueFormGroup.controls.octoberIncome.value | currency: "EUR" }}</b>
-                        </span>
+                    <li> di essere titolare, per l'anno 2020, di un contratto di locazione ad uso abitativo, regolarmente registrato, relativo ad un immobile
+						non di edilizia residenziale pubblica;
                     </li>
+					<li> di essere consapevole che il contributo previsto dall'art.11 della L.n.431/98 non può
+						essere cumulato con contributi erogati da altri Enti per la stessa finalità;
+					</li>
+					<li>che è stato stipulato in data {{dateRent | date: "MM/dd/yy" }}
+						regolare contratto di fitto ad uso abitativo, 
+						per un importo mensile {{economicSituationFormGroup.controls.amountRent.value}}
+						registrato presso l'Agenzia delle Entrate in data {{economicSituationFormGroup.controls.registrationDate.value}}
+						al numero {{economicSituationFormGroup.controls.referenceContract.value}}
+					</li>
                     <li>
                         di autorizzare il trattamento dei dati personali ai sensi dell’art. 13 del Decreto Legislativo
                         30 Giugno 2003, n. 196 “Codice in materia di protezione dei dati personali” e dell’art. 13 del

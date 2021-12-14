@@ -21,6 +21,7 @@ import { Form2Component } from './form-2/form-2.component';
 import { MatNativeDateModule, MatStepperModule } from '@angular/material';
 import { Form3Component } from './form-3/form-3.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 
   ],
   providers: [
+	  DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenContextInterceptor,

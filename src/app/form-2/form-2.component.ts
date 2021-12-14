@@ -29,7 +29,10 @@ export class Form2Component implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private complexApiControllerService: ComplexApiControllerService,
+		
     ) { }
+
+	b:any;
 
     ngOnInit(): void {
         this.principalRequirementFormGroup = this._formBuilder.group({
@@ -155,11 +158,28 @@ export class Form2Component implements OnInit {
         setTimeout(() => stepper.next(), 1);
     }
 
-
+	
     async confirmation() {
         this.inTrasmission = true;
         this.trasmissionStatus = 0;
         this.showTrasmissionError = false;
+
+		console.log (this.anagraficFormGroup)
+		this.b = {
+			firstname: this.anagraficFormGroup.value.firstname,
+			lastname: this.anagraficFormGroup.value.lastname,
+			taxId: this.anagraficFormGroup.value.taxId,
+			email: this.anagraficFormGroup.value.email,
+			mobile: this.anagraficFormGroup.value.mobile,
+			adult: this.anagraficFormGroup.value.adult,
+			children: this.anagraficFormGroup.value.children,
+			address: this.residenceFormGroup.value.address,
+			address2: this.residenceFormGroup.value.address2,
+			rentOrMutal: this.residenceFormGroup.value.rentOrMutal,
+			economicalSituation: this.economicSituationFormGroup.value.economicalSituation,
+			accountBalance: this.principalRequirementFormGroup.value.accountBalance,
+			
+		}
 
         let request: ComplexSolidarityRequestDTO = {
             telephone: this.principalRequirementFormGroup.controls.accountBalance.value,//conto
@@ -183,7 +203,9 @@ export class Form2Component implements OnInit {
             city: this.fiscalDataValueFormGroup.controls.incomeReason.value,//motivo reddito
             requestStatusBIncomeFeb: this.fiscalDataValueFormGroup.controls.prevYearIncome.value//reddito anno prec
         }
-        
+       
+		
+
         try {
             let response = await this.complexApiControllerService.complexSolidarityRequestPost(request).toPromise();
             this.confirmationId = response.id;
@@ -193,4 +215,7 @@ export class Form2Component implements OnInit {
             this.trasmissionError = e;
         }
     }
+
+	
+	
 }

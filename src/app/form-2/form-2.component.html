@@ -530,8 +530,11 @@
             </div>
         </mat-step>
 
+		
 
+	
     </mat-horizontal-stepper>
+	
 </div>
 
 
@@ -553,10 +556,14 @@
     <div [ngSwitch]="trasmissionStatus">
         <div *ngSwitchCase="0">
             <br><br><br><br>
+			
+			
             <mat-spinner style="margin: 0 auto;"></mat-spinner>
             <h3>INVIO DOMANDA ...</h3>
             <br>
             <br>
+			
+			<pre> {{b | json}}</pre>
         </div>
         <div *ngSwitchCase="1">
             <h3>Domanda inviata con successo!</h3>
