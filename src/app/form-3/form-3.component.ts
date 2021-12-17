@@ -59,9 +59,9 @@ export class Form3Component implements OnInit {
 			economicalSituation: [''],
 			amountRent: ['', Validators.required],
 			iban: ['', Validators.required],
-			dateRent: [''],
-			registrationDate: [''],
-			referenceContract: [''],
+			dateRent: ['', Validators.required],
+			registrationDate: ['', Validators.required],
+			referenceContract: ['', Validators.required],
 
         });
 
