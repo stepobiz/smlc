@@ -88,7 +88,7 @@
                         <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
                         <mat-error>Il nome è obbligatorio!</mat-error>
                     </mat-form-field>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" >
                         <mat-label>Cognome</mat-label>
                         <input matInput formControlName="lastname" required>
                         <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
@@ -96,7 +96,7 @@
                     </mat-form-field>
                 </div>
                 <div>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" >
                         <mat-label>Codice Fiscale</mat-label>
                         <input matInput formControlName="taxId" required>
                         <mat-icon matSuffix class="secondary-text">code</mat-icon>
@@ -106,13 +106,13 @@
 
                 <h3>Contatti</h3>
                 <div>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" >
                         <mat-label>Email</mat-label>
                         <input matInput formControlName="email">
                         <mat-icon matSuffix class="secondary-text">email</mat-icon>
                         <mat-error>L' Email è obbligatoria!</mat-error>
                     </mat-form-field>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" >
                         <mat-label>Cellulare</mat-label>
                         <input matInput formControlName="mobile" type="number" required>
                         <mat-icon matSuffix class="secondary-text">mobile_friendly</mat-icon>
@@ -215,9 +215,9 @@
             <form [formGroup]="economicSituationFormGroup">
 				<h2>Dati contratto di locazione</h2>
                 <div>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" class="mr-4">
 						<mat-label>Data stipula contratto</mat-label>
-						<input matInput [matDatepicker]="dateRent">
+						<input formControlName="dateRent" matInput [matDatepicker]="dateRent" required>
 						<mat-datepicker-toggle matSuffix [for]="dateRent"></mat-datepicker-toggle>
 						<mat-datepicker #dateRent>
 						  
@@ -240,9 +240,9 @@
 				<div>
 					<h3>Registrato all'Agenzia delle Entrate:</h3>
 
-					<mat-form-field appearance="outline">
+					<mat-form-field appearance="outline" class="mr-4">
 						<mat-label>Data registrazione</mat-label>
-						<input matInput [matDatepicker]="registrationDate">
+						<input matInput formControlName="registrationDate" [matDatepicker]="registrationDate" required> 
 						<mat-datepicker-toggle matSuffix [for]="registrationDate"></mat-datepicker-toggle>
 						<mat-datepicker #registrationDate>
 						  
@@ -255,7 +255,7 @@
 					
 					<mat-form-field appearance="outline" >
 						<mat-label>Numero</mat-label>
-						<input matInput type="number" formControlName="referenceContract">
+						<input matInput type="number" formControlName="referenceContract" required>
 					</mat-form-field>
 				</div>
 				
@@ -264,7 +264,7 @@
 					<h3>Iban conto corrente postale o bancario per l'accredito dell'eventuale contributo </h3>
 					<mat-form-field appearance="outline" >
 						<mat-label>Iban</mat-label>
-						<input matInput formControlName="iban">
+						<input matInput formControlName="iban" required>
 					</mat-form-field>
 				</div>
                 <div fxLayout="row" fxLayoutAlign="end top">
@@ -343,7 +343,7 @@
                 <ul>
                     <li>di avere la residenza anagrafica nel Comune e nell'immobile per il quale è richiesto il contributo;</li>
                     <li>
-                        di possedere un valore ISE pari ad {{principalRequirementFormGroup.controls.accountBalance.value}};
+                        di possedere un valore ISE pari ad {{ principalRequirementFormGroup.value.accountBalance }};
                         
                     </li>
                    
@@ -356,11 +356,11 @@
 					<li> di essere consapevole che il contributo previsto dall'art.11 della L.n.431/98 non può
 						essere cumulato con contributi erogati da altri Enti per la stessa finalità;
 					</li>
-					<li>che è stato stipulato in data {{dateRent | date: "MM/dd/yy" }}
+					<li>che è stato stipulato in data {{ economicSituationFormGroup.value.dateRent | date: "MM/dd/yy" }}
 						regolare contratto di fitto ad uso abitativo, 
-						per un importo mensile {{economicSituationFormGroup.controls.amountRent.value}}
-						registrato presso l'Agenzia delle Entrate in data {{economicSituationFormGroup.controls.registrationDate.value}}
-						al numero {{economicSituationFormGroup.controls.referenceContract.value}}
+						per un importo mensile {{ economicSituationFormGroup.value.amountRent }}
+						registrato presso l'Agenzia delle Entrate in data {{economicSituationFormGroup.value.registrationDate | date: "MM/dd/yy"}}
+						al numero {{ economicSituationFormGroup.value.referenceContract }}
 					</li>
                     <li>
                         di autorizzare il trattamento dei dati personali ai sensi dell’art. 13 del Decreto Legislativo
@@ -387,6 +387,13 @@
 
 
     </mat-horizontal-stepper>
+
+	<pre>{{ principalRequirementFormGroup.value | json }}</pre>
+	<pre>{{ anagraficFormGroup.value | json }}</pre>
+	<pre>{{ residenceFormGroup.value | json }}</pre>
+	<pre>{{ economicSituationFormGroup.value | json }}</pre>
+	<pre>{{ fiscalDataValueFormGroup.value | json }}</pre>
+
 </div>
 
 

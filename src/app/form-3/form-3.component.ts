@@ -78,41 +78,24 @@ export class Form3Component implements OnInit {
 
 
 
-    checkFiscalDataValue(stepper): void {
-        let economicalSituation = this.economicSituationFormGroup.controls.economicalSituation.value;
-        this.fiscalFormIsCompleted = false;
-		 
+    
+	checkFiscalDataValue(stepper): void {
+
 		let rent: any ={
 			amountRent : this.economicSituationFormGroup.controls.amountRent.value,
-			rentDate : this.economicSituationFormGroup.controls.rentDate.value,
-			ref : this.economicSituationFormGroup.controls.ref.value,
-			numberRef : this.economicSituationFormGroup.controls.numberRef.value,
+			dateRent : this.economicSituationFormGroup.controls.dateRent.value,
+			registrationDate : this.economicSituationFormGroup.controls.registrationDate.value,
+			referenceContract : this.economicSituationFormGroup.controls.referenceContract.value,
 			iban : this.economicSituationFormGroup.controls.iban.value,
 		}
-
-        switch (economicalSituation) {
-           
-            case 'B': case 'D':
-                if (this.fiscalDataValueFormGroup.controls.octoberIncome.invalid) {
-                    break;
-                }
-                this.fiscalFormIsCompleted = true;
-                break;
-            case 'C': case 'E':
-                if (this.fiscalDataValueFormGroup.controls.octoberIncome.invalid) {
-                    break;
-                }
-                this.fiscalFormIsCompleted = true;
-                break;
-            case 'F':
-                if (this.fiscalDataValueFormGroup.controls.prevYearIncome.invalid || this.fiscalDataValueFormGroup.controls.octoberIncome.invalid) {
-                    break;
-                }
-                this.fiscalFormIsCompleted = true;
-                break;
-        }
-
-        setTimeout(() => stepper.next(), 1);
+			
+	
+		this.fiscalFormIsCompleted = false;
+	
+			
+	
+		setTimeout(() => stepper.next(), 1);
+		
     }
 
 
