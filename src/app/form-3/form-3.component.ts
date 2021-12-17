@@ -81,6 +81,14 @@ export class Form3Component implements OnInit {
     checkFiscalDataValue(stepper): void {
         let economicalSituation = this.economicSituationFormGroup.controls.economicalSituation.value;
         this.fiscalFormIsCompleted = false;
+		 
+		let rent: any ={
+			amountRent : this.economicSituationFormGroup.controls.amountRent.value,
+			rentDate : this.economicSituationFormGroup.controls.rentDate.value,
+			ref : this.economicSituationFormGroup.controls.ref.value,
+			numberRef : this.economicSituationFormGroup.controls.numberRef.value,
+			iban : this.economicSituationFormGroup.controls.iban.value,
+		}
 
         switch (economicalSituation) {
            
