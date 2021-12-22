@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormDataDTO, FormDataResourceService } from 'aig-generic';
 import { ComplexApiControllerService, ComplexSolidarityRequestDTO, ComplexSolidarityRequestDTOFamily } from 'aig-solidarety';
 
 @Component({
@@ -28,7 +29,7 @@ export class Form3Component implements OnInit {
 
     constructor(
         private _formBuilder: FormBuilder,
-        private complexApiControllerService: ComplexApiControllerService,
+        private formDataResourceService: FormDataResourceService,
     ) { }
 
     ngOnInit(): void {
@@ -80,19 +81,8 @@ export class Form3Component implements OnInit {
 
     
 	checkFiscalDataValue(stepper): void {
-
-		let rent: any ={
-			amountRent : this.economicSituationFormGroup.value.amountRent.value,
-			dateRent : this.economicSituationFormGroup.controls.dateRent.value,
-			registrationDate : this.economicSituationFormGroup.controls.registrationDate.value,
-			referenceContract : this.economicSituationFormGroup.controls.referenceContract.value,
-			iban : this.economicSituationFormGroup.controls.iban.value,
-		}
-			
 	
 		this.fiscalFormIsCompleted = false;
-	
-			
 	
 		setTimeout(() => stepper.next(), 1);
 		
@@ -104,27 +94,31 @@ export class Form3Component implements OnInit {
         this.trasmissionStatus = 0;
         this.showTrasmissionError = false;
 
-        let request: any = {
-            telephone: this.principalRequirementFormGroup.controls.accountBalance.value,//conto
-            firstname: this.anagraficFormGroup.controls.firstname.value,
-            lastname: this.anagraficFormGroup.controls.lastname.value,
-            taxId: this.anagraficFormGroup.controls.taxId.value,
-            email: this.anagraficFormGroup.controls.email.value,
-            mobile: this.anagraficFormGroup.controls.mobile.value,
-            family: {
-                adult: this.anagraficFormGroup.controls.adult.value,
-                children: (this.anagraficFormGroup.controls.children.value == "") ? 0 : this.anagraficFormGroup.controls.children.value,
-            },
-            address: this.residenceFormGroup.controls.address.value,
-            address2: this.residenceFormGroup.controls.address2.value,
-            
-            
-           
-            
+		let request: FormDataDTO = {
+			formTypeId: 1,
+
+			s1: this.principalRequirementFormGroup.value.accountBalance,
+
+
+			s2: this.anagraficFormGroup.value.firstname,
+			s3: this.anagraficFormGroup.value.lastname,
+			s4: this.anagraficFormGroup.value.taxId,
+			s5: this.anagraficFormGroup.value.email,
+			s6: this.anagraficFormGroup.value.mobile,
+			n1: this.anagraficFormGroup.value.adult,
+			n2: (this.anagraficFormGroup.value.children == "") ? 0 : this.anagraficFormGroup.value.children,
+
+			s7: this.residenceFormGroup.value.address,
+            s8: this.residenceFormGroup.value.address2,
+			s9: this.residenceFormGroup.value.rentOrMutal,
+
+			s10: this.economicSituationFormGroup.value.economicalSituation,
+
+			n3: (this.economicSituationFormGroup.value.economicalSituation == "A") ? null : this.fiscalDataValueFormGroup.value.octoberIncome
         }
         
         try {
-			let response = await this.complexApiControllerService.complexSolidarityRequestPost(request).toPromise();
+			let response = await this.formDataResourceService.createFormDataUsingPOST(request).toPromise();
             this.confirmationId = response.id;
             this.trasmissionStatus = 1;
         } catch (e) {

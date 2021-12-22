@@ -165,25 +165,7 @@ export class Form2Component implements OnInit {
         this.trasmissionStatus = 0;
         this.showTrasmissionError = false;
 
-		console.log (this.anagraficFormGroup)
-		this.b = {
-			firstname: this.anagraficFormGroup.value.firstname,
-			lastname: this.anagraficFormGroup.value.lastname,
-			taxId: this.anagraficFormGroup.value.taxId,
-			email: this.anagraficFormGroup.value.email,
-			mobile: this.anagraficFormGroup.value.mobile,
-			adult: this.anagraficFormGroup.value.adult,
-			children: this.anagraficFormGroup.value.children,
-			address: this.residenceFormGroup.value.address,
-			address2: this.residenceFormGroup.value.address2,
-			rentOrMutal: this.residenceFormGroup.value.rentOrMutal,
-			economicalSituation: this.economicSituationFormGroup.value.economicalSituation,
-			accountBalance: this.principalRequirementFormGroup.value.accountBalance,
-			
-		}
-	
-    	
-       
+		    
 		
         let request: FormDataDTO = {
 			formTypeId: 1,
