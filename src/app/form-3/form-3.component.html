@@ -32,7 +32,7 @@
         <mat-step [stepControl]="principalRequirementFormGroup">
             <ng-template matStepLabel>Requisito principale</ng-template>
             <form [formGroup]="principalRequirementFormGroup">
-                <h1>VALORE ISE IN CORSO DI VALIDITA'</h1>
+                <h1>VALORE ISE 2021 IN CORSO DI VALIDITA'</h1>
 
                 <div>
                     <h3>(ATTENZIONE inserire ISE non il valore ISEE):</h3>
@@ -264,7 +264,7 @@
 					<h3>Iban conto corrente postale o bancario per l'accredito dell'eventuale contributo </h3>
 					<mat-form-field appearance="outline" >
 						<mat-label>Iban</mat-label>
-						<input matInput formControlName="iban" required>
+						<input matInput formControlName="iban">
 					</mat-form-field>
 				</div>
                 <div fxLayout="row" fxLayoutAlign="end top">
@@ -313,6 +313,7 @@
                     residente in Santa Maria la Carità (Na) alla via {{ residenceFormGroup.controls.address.value }} n.
                     {{ residenceFormGroup.controls.address2.value }}
                     Codice Fiscale {{ anagraficFormGroup.controls.taxId.value }}
+					Iban {{ economicSituationFormGroup.value.iban }}
                     cell {{ anagraficFormGroup.controls.mobile.value }}
                     <span *ngIf="(anagraficFormGroup.controls.email.value != '')">email
                         {{ anagraficFormGroup.controls.email.value }}</span>
@@ -417,6 +418,7 @@
             <br><br><br><br>
             <mat-spinner style="margin: 0 auto;"></mat-spinner>
             <h3>INVIO DOMANDA ...</h3>
+			
             <br>
             <br>
         </div>
@@ -424,6 +426,15 @@
             <h3>Domanda inviata con successo!</h3>
             <h2>Codice pratica <span style="color: red;">{{ confirmationId }}</span></h2>
             <h2>Conserva questo codice! Ti servirà per conoscere l'esito della tua pratica.</h2>
+			<h2>ATTENZIONE!</h2>
+			<h2>Entro 45 giorni vi arriverà un messaggio sul numero telefonico indicato per presentarvi in ufficio e consegnare 
+				la seguente documentazione:
+			</h2>
+			<ul>
+				<li><h2>fotocopia carta d'identità;</h2></li>
+				<li><h2>certificazione ISEE 2021;</h2></li>
+				<li><h2>copia contratto di locazione;</h2></li>
+			</ul>
         </div>
         <div *ngSwitchDefault>
             <h3 style="color: red;">Errore nell'invio della domanda!</h3>

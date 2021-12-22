@@ -58,7 +58,7 @@ export class Form3Component implements OnInit {
         this.economicSituationFormGroup = this._formBuilder.group({
 			economicalSituation: [''],
 			amountRent: ['', Validators.required],
-			iban: ['', Validators.required],
+			iban: [''],
 			dateRent: ['', Validators.required],
 			registrationDate: ['', Validators.required],
 			referenceContract: ['', Validators.required],
@@ -82,7 +82,7 @@ export class Form3Component implements OnInit {
 	checkFiscalDataValue(stepper): void {
 
 		let rent: any ={
-			amountRent : this.economicSituationFormGroup.controls.amountRent.value,
+			amountRent : this.economicSituationFormGroup.value.amountRent.value,
 			dateRent : this.economicSituationFormGroup.controls.dateRent.value,
 			registrationDate : this.economicSituationFormGroup.controls.registrationDate.value,
 			referenceContract : this.economicSituationFormGroup.controls.referenceContract.value,
@@ -104,7 +104,7 @@ export class Form3Component implements OnInit {
         this.trasmissionStatus = 0;
         this.showTrasmissionError = false;
 
-        let request: ComplexSolidarityRequestDTO = {
+        let request: any = {
             telephone: this.principalRequirementFormGroup.controls.accountBalance.value,//conto
             firstname: this.anagraficFormGroup.controls.firstname.value,
             lastname: this.anagraficFormGroup.controls.lastname.value,
@@ -117,18 +117,14 @@ export class Form3Component implements OnInit {
             },
             address: this.residenceFormGroup.controls.address.value,
             address2: this.residenceFormGroup.controls.address2.value,
-            requestStatusA: (this.residenceFormGroup.controls.rentOrMutal.value == 'A') ? true : false, //fitto o mutuo
-            requestStatusB: (this.residenceFormGroup.controls.rentOrMutal.value == 'B') ? true : false, //fitto o mutuo
             
-            cap: this.principalRequirementFormGroup.controls.reason.value, //fascia
             
-            requestStatusBIncomeMar: this.fiscalDataValueFormGroup.controls.octoberIncome.value,//reddito ottobre
-            city: this.fiscalDataValueFormGroup.controls.incomeReason.value,//motivo reddito
-            requestStatusBIncomeFeb: this.fiscalDataValueFormGroup.controls.prevYearIncome.value//reddito anno prec
+           
+            
         }
         
         try {
-            let response = await this.complexApiControllerService.complexSolidarityRequestPost(request).toPromise();
+			let response = await this.complexApiControllerService.complexSolidarityRequestPost(request).toPromise();
             this.confirmationId = response.id;
             this.trasmissionStatus = 1;
         } catch (e) {
