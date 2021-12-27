@@ -196,6 +196,82 @@
 
 
 
+		
+
+
+		<mat-step>
+            <ng-template matStepLabel>Dichiarazione</ng-template>
+
+
+            <div id="dichiarazione">
+                <div id="intestazione">
+                    <img src="https://www.comune.santamarialacarita.na.it/public/th.gif" />
+                    <h3>Comune di Santa Maria la Carità</h3>
+                    <h4>Città Metropolitana di Napoli</h4>
+                </div>
+
+            
+                <p>
+                    Il/La sottoscritto/a {{ anagraficFormGroup.controls.lastname.value }}
+                    {{ anagraficFormGroup.controls.firstname.value }}
+                   
+                </p>
+
+
+               
+                <ul>
+                    <li>di avere, unitamente ai proprio nucleo familiare, i requisiti previsti dall'art. 2 lett, a, b, c, d,
+						e, f della Legge Regione Campania del 2 luglio 1997, n. 18 per l'accesso all'Edilizia
+						Residenziale Pubblica (in caso di trasferimento in altro Comune, il requisito della residenza
+						va posseduto con riferimento alla data di pubblicazione del presente bando);</li>
+
+                    <li>essere titolare, per l’anno 2020, di un contratto di locazione ad uso abitativo, regolarmente
+						registrato, relativo ad un immobile non di edilizia residenziale pubblica;</li>
+
+					<li>di essere consapevole che il contributo previsto dall'art. 11 della L. n. 431/98 non può essere
+						cumulato con contributi erogati da altri Enti per la stessa finalità;</li>
+					<li>di presentare certificazione dalla quale risultino valore ISEE (Indicatore della Situazione
+						Economica Equivalente), valore ISE (Indicatore della Situazione Economica) e incidenza del
+						canone annuo, al netto degli oneri accessori, sul valore ISE, calcolati ai sensi del D.Lgs. n.
+						109/98 e successive modificazioni ed integrazioni, rientranti entro i valori di seguito indicati:
+
+
+						
+					</li>
+					<li *ngIf="principalRequirementFormGroup.value.accountBalance <= 12000">
+						FASCIA "A" Valore ISE (riferimento redditi anno 2019), non superiore all'importo di euro
+					12.000,00 rispetto al quale l'incidenza del canone, al netto degli oneri accessori, sul valore ISE
+					risulta non inferiore al 14%;
+					</li>
+					<li *ngIf="principalRequirementFormGroup.value.accountBalance > 12000">
+						FASCIA "B" Valore ISE (riferimento redditi anno 2019) non superiore all'importo di euro
+					25.000,00, rispetto al quale l'incidenza del canone, al netto degli oneri accessori, sul valore
+					ISE risulta non inferiore al 24%;
+					</li>
+						
+				</ul>
+				
+			
+
+
+				
+            </div>
+
+			
+
+			<div fxLayout="row" fxLayoutAlign="end top">
+				<button mat-button matStepperPrevious>Indietro</button>
+				<button mat-button matStepperNext mat-raised-button color="primary">Avanti</button>
+			</div>
+        </mat-step>
+
+
+
+
+
+
+
+
 
 
 
@@ -313,7 +389,7 @@
                     residente in Santa Maria la Carità (Na) alla via {{ residenceFormGroup.controls.address.value }} n.
                     {{ residenceFormGroup.controls.address2.value }}
                     Codice Fiscale {{ anagraficFormGroup.controls.taxId.value }}
-					Iban {{ economicSituationFormGroup.value.iban }}
+					<span *ngIf="(economicSituationFormGroup.value.iban != '')">iban {{economicSituationFormGroup.value.iban}}</span> 
                     cell {{ anagraficFormGroup.controls.mobile.value }}
                     <span *ngIf="(anagraficFormGroup.controls.email.value != '')">email
                         {{ anagraficFormGroup.controls.email.value }}</span>
@@ -389,11 +465,7 @@
 
     </mat-horizontal-stepper>
 
-	<pre>{{ principalRequirementFormGroup.value | json }}</pre>
-	<pre>{{ anagraficFormGroup.value | json }}</pre>
-	<pre>{{ residenceFormGroup.value | json }}</pre>
-	<pre>{{ economicSituationFormGroup.value | json }}</pre>
-	<pre>{{ fiscalDataValueFormGroup.value | json }}</pre>
+	
 
 </div>
 
