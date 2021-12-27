@@ -32,7 +32,7 @@
         <mat-step [stepControl]="principalRequirementFormGroup">
             <ng-template matStepLabel>Requisito principale</ng-template>
             <form [formGroup]="principalRequirementFormGroup">
-                <h1>VALORE ISE 2021 IN CORSO DI VALIDITA'</h1>
+                <h1>VALORE ISE 2021 NON IN CORSO DI VALIDITA'</h1>
 
                 <div>
                     <h3>(ATTENZIONE inserire ISE non il valore ISEE):</h3>
@@ -293,7 +293,7 @@
                 <div>
                     <mat-form-field appearance="outline" class="mr-4">
 						<mat-label>Data stipula contratto</mat-label>
-						<input formControlName="dateRent" matInput [matDatepicker]="dateRent" required>
+						<input formControlName="dateRent" matInput [matDatepicker]="dateRent"  required >
 						<mat-datepicker-toggle matSuffix [for]="dateRent"></mat-datepicker-toggle>
 						<mat-datepicker #dateRent>
 						  
@@ -389,8 +389,7 @@
                     residente in Santa Maria la Carità (Na) alla via {{ residenceFormGroup.controls.address.value }} n.
                     {{ residenceFormGroup.controls.address2.value }}
                     Codice Fiscale {{ anagraficFormGroup.controls.taxId.value }}
-					<span *ngIf="(economicSituationFormGroup.value.iban != '')">iban {{economicSituationFormGroup.value.iban}}</span> 
-                    cell {{ anagraficFormGroup.controls.mobile.value }}
+					
                     <span *ngIf="(anagraficFormGroup.controls.email.value != '')">email
                         {{ anagraficFormGroup.controls.email.value }}</span>
 						In riferimento all’AVVISO PUBBLICO “FONDO DI SOLIDARIETA’ in attuazione del D.L. n. 73 del 25/05/2021, art. 53;,
@@ -412,9 +411,16 @@
                 </ul>
 
                 <h3>Chiede</h3>
-                <p>
-					di essere ammesso all’erogazione del contributo per il sostegno ai canoni di locazione per le abitazioni principali;
-                </p>
+				<ul>
+					<li>
+						di essere ammesso all’erogazione del contributo per il sostegno ai canoni di locazione per le abitazioni principali;
+					</li>
+					<li><span *ngIf="(economicSituationFormGroup.value.iban != '')">l'accredito dell'eventuale contributo spettante sull'Iban {{economicSituationFormGroup.value.iban}}</span></li> 
+				</ul>
+               
+                
+				
+
 
                 <h3>Dichiara</h3>
                 <ul>

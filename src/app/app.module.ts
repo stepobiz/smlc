@@ -18,7 +18,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenContextInterceptor } from './token-context.interceptor';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Form2Component } from './form-2/form-2.component';
-import { MatNativeDateModule, MatStepperModule } from '@angular/material';
+import { MatNativeDateModule, MatStepperModule, MAT_DATE_LOCALE } from '@angular/material';
 import { Form3Component } from './form-3/form-3.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
@@ -67,7 +67,11 @@ import { AigGenericClientModule, AIG_GENERIC_PATH } from 'aig-generic';
 	{
 		provide: AIG_GENERIC_PATH,
 		useValue: "https://api-gest.eneasys.net/" + "g5c"
+
 	  },
+	  { provide: MAT_DATE_LOCALE, useValue: 'it-IT' },
+
+	  
   ],
   bootstrap: [AppComponent]
 })
