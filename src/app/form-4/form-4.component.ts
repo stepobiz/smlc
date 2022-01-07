@@ -33,7 +33,7 @@ export class Form4Component implements OnInit {
 
     ngOnInit(): void {
         this.principalRequirementFormGroup = this._formBuilder.group({
-            accountBalance: ['', [Validators.required, Validators.max(25000)]],
+            accountBalance: ['', Validators.required],
         });
 
         this.anagraficFormGroup = this._formBuilder.group({
