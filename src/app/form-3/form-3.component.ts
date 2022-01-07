@@ -23,7 +23,6 @@ export class Form3Component implements OnInit {
     anagraficFormGroup: FormGroup;
     residenceFormGroup: FormGroup;
     economicSituationFormGroup: FormGroup;
-    fiscalDataValueFormGroup: FormGroup;
 
     confirmationId;
 
@@ -53,23 +52,15 @@ export class Form3Component implements OnInit {
         this.residenceFormGroup = this._formBuilder.group({
             address: ['', Validators.required],
             address2: ['', Validators.required],
-            rentOrMutal: [''],
         });
 
         this.economicSituationFormGroup = this._formBuilder.group({
-			economicalSituation: [''],
 			amountRent: ['', Validators.required],
 			iban: [''],
 			dateRent: ['', Validators.required],
 			registrationDate: ['', Validators.required],
 			referenceContract: ['', Validators.required],
 
-        });
-
-        this.fiscalDataValueFormGroup = this._formBuilder.group({
-            octoberIncome: ['', Validators.required],
-            incomeReason: ['', Validators.required],
-            prevYearIncome: ['', Validators.required],
         });
 
 
@@ -89,17 +80,16 @@ export class Form3Component implements OnInit {
 		
     }
 
-
+banana:any;
     async confirmation() {
         this.inTrasmission = true;
         this.trasmissionStatus = 0;
         this.showTrasmissionError = false;
 
 		let request: FormDataDTO = {
-			formTypeId: 1,
+			formTypeId: 2,
 
-			s1: this.principalRequirementFormGroup.value.accountBalance,
-
+			n3: this.principalRequirementFormGroup.value.accountBalance,
 
 			s2: this.anagraficFormGroup.value.firstname,
 			s3: this.anagraficFormGroup.value.lastname,
@@ -111,12 +101,17 @@ export class Form3Component implements OnInit {
 
 			s7: this.residenceFormGroup.value.address,
             s8: this.residenceFormGroup.value.address2,
-			s9: this.residenceFormGroup.value.rentOrMutal,
 
-			s10: this.economicSituationFormGroup.value.economicalSituation,
+			n5: this.economicSituationFormGroup.value.amountRent,
+			s9: this.economicSituationFormGroup.value.iban,
+			d2: this.economicSituationFormGroup.value.dateRent,
+			d3: this.economicSituationFormGroup.value.registrationDate,
+			s10: this.economicSituationFormGroup.value.referenceContract,
 
-			n3: (this.economicSituationFormGroup.value.economicalSituation == "A") ? null : this.fiscalDataValueFormGroup.value.octoberIncome
+			d1: new Date(),
+			
         }
+		this.banana = request;
         
         try {
 			let response = await this.formDataResourceService.createFormDataUsingPOST(request).toPromise();

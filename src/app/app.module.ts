@@ -23,6 +23,7 @@ import { Form3Component } from './form-3/form-3.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
 import { AigGenericClientModule, AIG_GENERIC_PATH } from 'aig-generic';
+import { Form4Component } from './form-4/form-4.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AigGenericClientModule, AIG_GENERIC_PATH } from 'aig-generic';
     Form2Component,
     FormComponent,
 	Form3Component,
+	Form4Component,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,7 @@ import { AigGenericClientModule, AIG_GENERIC_PATH } from 'aig-generic';
 	  },
 	  { provide: MAT_DATE_LOCALE, useValue: 'it-IT' },
 
-	  
+
   ],
   bootstrap: [AppComponent]
 })

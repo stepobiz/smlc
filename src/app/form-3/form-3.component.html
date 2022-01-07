@@ -32,7 +32,7 @@
         <mat-step [stepControl]="principalRequirementFormGroup">
             <ng-template matStepLabel>Requisito principale</ng-template>
             <form [formGroup]="principalRequirementFormGroup">
-                <h1>VALORE ISE 2021 NON IN CORSO DI VALIDITA'</h1>
+                <h1>VALORE ISE 2021</h1>
 
                 <div>
                     <h3>(ATTENZIONE inserire ISE non il valore ISEE):</h3>
@@ -40,7 +40,7 @@
 
                     <mat-form-field appearance="outline">
                         <mat-label>Importo</mat-label>
-                        <input matInput formControlName="accountBalance" required>
+                        <input type="number" matInput formControlName="accountBalance" required>
                         <mat-icon matSuffix class="secondary-text">euro</mat-icon>
                         <mat-error>Importo non conforme, non è possibile presentare la domanda!</mat-error>
                     </mat-form-field>
@@ -439,10 +439,10 @@
 					<li> di essere consapevole che il contributo previsto dall'art.11 della L.n.431/98 non può
 						essere cumulato con contributi erogati da altri Enti per la stessa finalità;
 					</li>
-					<li>che è stato stipulato in data {{ economicSituationFormGroup.value.dateRent | date: "MM/dd/yy" }}
+					<li>che è stato stipulato in data {{ economicSituationFormGroup.value.dateRent | date: "dd/MM/yy" }}
 						regolare contratto di fitto ad uso abitativo, 
 						per un importo mensile {{ economicSituationFormGroup.value.amountRent }}
-						registrato presso l'Agenzia delle Entrate in data {{economicSituationFormGroup.value.registrationDate | date: "MM/dd/yy"}}
+						registrato presso l'Agenzia delle Entrate in data {{economicSituationFormGroup.value.registrationDate | date: "dd/MM/yy"}}
 						al numero {{ economicSituationFormGroup.value.referenceContract }}
 					</li>
                     <li>
@@ -471,7 +471,7 @@
 
     </mat-horizontal-stepper>
 
-	
+
 
 </div>
 
@@ -528,3 +528,13 @@
         </div>
     </div>
 </div>
+
+
+<!--<pre>
+	{{principalRequirementFormGroup.value| json}}
+	{{anagraficFormGroup.value| json}}
+	{{residenceFormGroup.value| json}}
+	{{economicSituationFormGroup.value| json}}
+
+	{{banana |json}}
+</pre>-->
