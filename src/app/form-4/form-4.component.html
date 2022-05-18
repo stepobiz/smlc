@@ -32,7 +32,7 @@
         <mat-step [stepControl]="principalRequirementFormGroup">
             <ng-template matStepLabel>Requisito principale</ng-template>
             <form [formGroup]="principalRequirementFormGroup">
-                <h1>VALORE ISEE 2021</h1>
+                <h1>VALORE ISEE 2022</h1>
 
                 <div>
 
@@ -214,7 +214,7 @@
             <ng-template matStepLabel>Utenze</ng-template>
 
             <form [formGroup]="economicSituationFormGroup">
-				<h2>Utenze per le quali si chiede contributo</h2>
+				<h2>Utenze per le quali si chiede contributo (contributo massimo 200,00 euro)</h2>
                 <div>
                     <mat-form-field appearance="fill">
 						<mat-label>Utenza</mat-label>
@@ -233,9 +233,34 @@
                         <mat-label>Importo</mat-label>
                         <input type="number" matInput formControlName="amountTax" required>
                         <mat-icon matSuffix class="secondary-text">euro</mat-icon>
-						<mat-error>Occorre dimostrare il pagamento di almeno 200,00 euro di utenze per l'anno 2021</mat-error>
+						
                     </mat-form-field>
 				</div>
+				<div>
+				
+                    <mat-form-field appearance="fill">
+						<mat-label>Utenza</mat-label>
+						<mat-select formControlName ="utenza2" >
+						  <mat-option value="luce">Luce</mat-option>
+						  <mat-option value="gas">Gas</mat-option>
+						  <mat-option value="telefono">Telefono</mat-option>
+						  <mat-option value="acqua">Acqua</mat-option>
+						  <mat-option value="tari">Tari</mat-option>
+						</mat-select>
+					  </mat-form-field>
+				</div>
+
+				<div>
+					<mat-form-field appearance="outline">
+                        <mat-label>Importo</mat-label>
+                        <input type="number" matInput formControlName="amountTax2" >
+                        <mat-icon matSuffix class="secondary-text">euro</mat-icon>
+					
+                    </mat-form-field>
+				</div>
+				<div> <p>Occorre dimostrare il pagamento di almeno 200,00 euro complessivamente per tutte le utenze  per l'anno 2021</p></div>
+
+		
 				
 
 				<div>
@@ -251,7 +276,7 @@
                 </div>
             </form>
 			<div> 
-				<h2>LE BOLLETTE INDICATE DOVRANNO ESSERE PORTATE IN COPIA AL COMUNE.</h2>
+				<h2> PER ULTERIORI CONTROLLI LE BOLLETTE INDICATE POTRANNO ESSERE RICHIESTE IN COPIA DAGLI UFFICI COMUNALI.</h2>
 			</div>
         </mat-step>
 
@@ -337,7 +362,11 @@
                         che la suddetta istanza è l’unica presentata dal proprio nucleo familiare;
                     </li>
                     
-					<li> Di aver pagato nell’annualità 2021 euro: {{economicSituationFormGroup.value.amountTax}} per le utenze: {{economicSituationFormGroup.value.utenza}} 
+					<li> Di aver pagato nell’annualità 2021 euro: {{economicSituationFormGroup.value.amountTax}} per le utenze: {{economicSituationFormGroup.value.utenza}};
+
+					</li>
+					<li> Di aver pagato nell’annualità 2021 euro: {{economicSituationFormGroup.value.amountTax2}} per le utenze: {{economicSituationFormGroup.value.utenza2}};
+						
 					</li>
                     <li>
                         di autorizzare il trattamento dei dati personali ai sensi dell’art. 13 del Decreto Legislativo
@@ -398,7 +427,7 @@
             <h3>Domanda inviata con successo!</h3>
             <h2>Codice pratica <span style="color: red;">{{ confirmationId }}</span></h2>
             <h2>Conserva questo codice! Ti servirà per conoscere l'esito della tua pratica.</h2>
-			
+		</div>	
         <div *ngSwitchDefault>
             <h3 style="color: red;">Errore nell'invio della domanda!</h3>
             <h4>Ci scusiamo per il disagio, clicca su tasto "Riprova" per provare a trasmettere nuovamente l'istanza, se

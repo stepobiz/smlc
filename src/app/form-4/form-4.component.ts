@@ -57,7 +57,10 @@ export class Form4Component implements OnInit {
 			
 			iban: [''],
 			utenza: ['', Validators.required],
-			amountTax: ['', [Validators.required, Validators.min(200)]],
+			utenza2: [''],
+			amountTax: ['', [Validators.required]],
+			amountTax2: [''],
+			
 
         });
 
@@ -85,7 +88,7 @@ banana:any;
         this.showTrasmissionError = false;
 
 		let request: FormDataDTO = {
-			formTypeId: 3,
+			formTypeId: 4,
 
 			n3: this.principalRequirementFormGroup.value.accountBalance,
 
@@ -103,6 +106,8 @@ banana:any;
 			s11: this.economicSituationFormGroup.value.utenza,
 			s9: this.economicSituationFormGroup.value.iban,
 			n5: this.economicSituationFormGroup.value.amountTax,
+			n6: this.economicSituationFormGroup.value.amountTax2,
+			s12: this.economicSituationFormGroup.value.utenza2,
 			
 
 			d1: new Date(),
